@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T11:57:28.673014+00:00",
+  "generated_at": "2026-09-04T12:24:08.338037+00:00",
   "methodology": {
     "primary_metric": "Ritardo accumulato sul tratto",
     "formula_morning": "ritardo Repubblica - ritardo Melzo",
@@ -11,6 +11,22 @@
     {
       "service_date": "2026-09-04",
       "train": "24561",
+      "line": "S5",
+      "direction": "evening",
+      "origin": "Milano Repubblica",
+      "destination": "Melzo",
+      "origin_delay": null,
+      "destination_delay": null,
+      "segment_delay": null,
+      "arrival_lateness": null,
+      "cancelled": false,
+      "data_quality": "incomplete",
+      "origin_observed_at": "",
+      "destination_observed_at": ""
+    },
+    {
+      "service_date": "2026-09-04",
+      "train": "24563",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
