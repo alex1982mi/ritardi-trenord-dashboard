@@ -34,7 +34,7 @@ jobs:
           if old not in s: raise SystemExit('button css pattern not found')
           s = s.replace(old, new, 1)
           marker = '})();</script></body></html>'
-          extra = "document.getElementById('reset').onclick=function(){document.getElementById('period').value='all';document.getElementById('line').value='all';document.getElementById('direction').value='all';document.getElementById('from').value='';document.getElementById('to').value='';document.getElementById('from').hidden=true;document.getElementById('to').hidden=true;PAGE=1;render();};"
+          extra = ";document.getElementById('reset').onclick=function(){document.getElementById('period').value='all';document.getElementById('line').value='all';document.getElementById('direction').value='all';document.getElementById('from').value='';document.getElementById('to').value='';document.getElementById('from').hidden=true;document.getElementById('to').hidden=true;PAGE=1;render();};"
           if marker not in s: raise SystemExit('IIFE end marker not found')
           s = s.replace(marker, extra + marker, 1)
           p.write_text(s, encoding='utf-8')
@@ -47,9 +47,7 @@ jobs:
           start=s.rfind('(function(){')
           end=s.rfind('</body></html>')
           if start < 0 or end <= start: raise SystemExit('cannot isolate dashboard JS')
-          js=s[start:end]
-          js=js.replace("$('export').onclick=exportPdf;load()document.getElementById('reset').onclick", "$('export').onclick=exportPdf;load();document.getElementById('reset').onclick")
-          Path('/tmp/dashboard.js').write_text(js, encoding='utf-8')
+          Path('/tmp/dashboard.js').write_text(s[start:end], encoding='utf-8')
           PY
           node --check /tmp/dashboard.js
           grep -q 'id="reset"' index.html
