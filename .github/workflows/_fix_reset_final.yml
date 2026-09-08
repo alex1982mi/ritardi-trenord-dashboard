@@ -1,0 +1,41 @@
+name: Fix Reset button final
+on:
+  push:
+    paths:
+      - '.github/workflows/_fix_reset_final.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add Reset handler
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          if "$('reset').onclick=" not in s:
+              marker="$('refresh').onclick=load;"
+              reset="$('reset').onclick=function(){$('period').value='all';$('line').value='all';$('direction').value='all';$('from').value='';$('to').value='';$('from').hidden=true;$('to').hidden=true;PAGE=1;render()};"
+              if marker not in s: raise SystemExit('refresh marker not found')
+              s=s.replace(marker,reset+marker,1)
+              p.write_text(s,encoding='utf-8')
+          PY
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          s=Path('index.html').read_text(encoding='utf-8')
+          scripts=re.findall(r'<script>(.*?)</script>',s,re.S)
+          Path('/tmp/dashboard.js').write_text(scripts[-1],encoding='utf-8')
+          PY
+          node --check /tmp/dashboard.js
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add index.html
+          git commit -m 'Fix Reset button'
+          git rm .github/workflows/_fix_reset_final.yml .github/workflows/_diag_dashboard.yml diag.txt 2>/dev/null || true
+          git commit -m 'Remove temporary dashboard fixes'
+          git push
