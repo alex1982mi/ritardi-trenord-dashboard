@@ -1,0 +1,53 @@
+name: Fix personal PDF comparison once
+on:
+  push:
+    paths:
+      - '.github/workflows/_fix_pdf_personal_once.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch personal metrics
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          old="function pc(){var t=pv.reduce(function(x,y){return x+y},0);return{runs:pv.length,delayed:pv.filter(function(x){return x>0}).length,avg:pv.length?t/pv.length:0,cancel:0}}var p=pc(),y=24;"
+          new="function personalRows(aa,bb,l,d){var out=[];Object.entries(SEL).forEach(function(q){var date=q[0],x=q[1]||{};if((aa&&date<aa)||(bb&&date>bb))return;['morning','evening'].forEach(function(dd){if(d!=='all'&&d!==dd)return;var id=x[dd];if(!id||id==='ASSENZA'||id==='NESSUN_TRENO')return;var e=DATA.episodes.find(function(z){return z.service_date===date&&z.slot_id===id&&(l==='all'||z.line===l)});if(e&&(e.cancelled||Number.isFinite(e.segment_delay)))out.push(e)})});return out}function pc(rs){var v=rs.filter(function(e){return Number.isFinite(e.segment_delay)}).map(function(e){return e.segment_delay});return{runs:rs.length,delayed:v.filter(function(x){return x>0}).length,avg:v.length?v.reduce(function(a,b){return a+b},0)/v.length:0,cancel:rs.filter(function(e){return e.cancelled}).length}}var p=pc(personalRows(a,b,line,dir)),rr=prevRange(),pp=pc(personalRows(rr[0],rr[1],line,dir)),y=24;"
+          if old not in s: raise SystemExit('target 1 not found')
+          s=s.replace(old,new,1)
+          old2="pctDelta(p.delayed,pg.personal_delayed)"
+          new2="pctDelta(p.delayed,pp.delayed)"
+          old3="pctDelta(p.avg,pg.personal_avg)"
+          new3="pctDelta(p.avg,pp.avg)"
+          s=s.replace(old2,new2,1).replace(old3,new3,1)
+          s=s.replace("(ch>0?'+':'−')+Math.abs(ch).toFixed(0)+'%'","(ch>0?'+':'-')+Math.abs(ch).toFixed(0)+'%'")
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Validate JavaScript
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path('index.html').read_text(encoding='utf-8')
+          blocks=re.findall(r'<script(?:\s[^>]*)?>(.*?)</script>',s,re.S)
+          Path('/tmp/inline.js').write_text('\n'.join(blocks),encoding='utf-8')
+          PY
+          node --check /tmp/inline.js
+      - name: Commit fix and remove one-time workflow
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git rm .github/workflows/_fix_pdf_personal_once.yml
+          git commit -m 'Fix personal PDF comparison metrics'
+          git push origin main
