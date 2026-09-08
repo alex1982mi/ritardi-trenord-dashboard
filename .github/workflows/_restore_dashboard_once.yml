@@ -14,7 +14,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git show bd5c0be51b5315e3484d483271df2c704fd5f775:index.html > index.html
+          git show 36d7379700ea1ffc03758b417630a1f4ac516918:index.html > index.html
           python3 - <<'PY'
           from pathlib import Path
           p = Path('index.html')
