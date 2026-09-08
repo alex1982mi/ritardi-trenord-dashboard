@@ -1,0 +1,31 @@
+name: Fix title spacing 2
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  fix:
+    if: github.event.head_commit.message != 'Fix title spacing 2 applied'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply CSS fix
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          old='.muted{color:#68737d;font-size:13px}.top h1{margin-bottom:0}'
+          new='.muted{color:#68737d;font-size:13px}.top{padding-top:21px}.top h1{margin:0}'
+          if old not in s:
+              raise SystemExit('expected CSS not found')
+          p.write_text(s.replace(old,new,1))
+          PY
+      - name: Commit and remove workflow
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add index.html .github/workflows/_fix_title_spacing2.yml
+          git commit -m 'Fix title spacing 2 applied'
+          git push
