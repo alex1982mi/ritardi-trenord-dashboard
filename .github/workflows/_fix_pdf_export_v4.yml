@@ -1,0 +1,49 @@
+name: Fix PDF export v4
+on:
+  push:
+    paths:
+      - '.github/workflows/_fix_pdf_export_v4.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch PDF period label scope
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+
+          old="function reportLabel(){var p=$('period').value,rr=range(),aa=rr[0],bb=rr[1],label;if(p==='today'){label=fmtDate(bb)}else if(p==='week'){label='Questa settimana ('+fmtDate(aa)+'–'+fmtDate(bb)+')'}else if(p==='prevweek'){label='Settimana precedente ('+fmtDate(aa)+'–'+fmtDate(bb)+')'}else if(p==='month'){label=monthName(new Date(aa+'T00:00:00'))+' '+new Date(aa+'T00:00:00').getFullYear()}else if(p==='prevyear'){label='Anno '+new Date(aa+'T00:00:00').getFullYear()}else if(p==='ytd'){label='Anno corrente ('+fmtDate(aa)+'–'+fmtDate(bb)+')'}else if(p==='custom'){label=fmtDate(aa)+'–'+fmtDate(bb)}else{label='Da inizio archivio ('+fmtDate(aa)+'–'+fmtDate(bb)+')'}var parts=[label];if(line!=='all')parts.push(line);if(dir!=='all')parts.push(dir==='morning'?'Mattina':'Sera');return parts.filter(Boolean).join(' - ')}"
+          new="function reportLabel(){var p=$('period').value,aa=a,bb=b,label;if(p==='today'){label=fmtDate(bb)}else if(p==='week'){label='Questa settimana ('+fmtDate(aa)+'–'+fmtDate(bb)+')'}else if(p==='prevweek'){label='Settimana precedente ('+fmtDate(aa)+'–'+fmtDate(bb)+')'}else if(p==='month'){label=monthName(new Date(aa+'T00:00:00'))+' '+new Date(aa+'T00:00:00').getFullYear()}else if(p==='prevyear'){label='Anno '+new Date(aa+'T00:00:00').getFullYear()}else if(p==='ytd'){label='Anno corrente ('+fmtDate(aa)+'–'+fmtDate(bb)+')'}else if(p==='custom'){label=fmtDate(aa)+'–'+fmtDate(bb)}else{label='Da inizio archivio ('+fmtDate(aa)+'–'+fmtDate(bb)+')'}var parts=[label];if(line!=='all')parts.push(line);if(dir!=='all')parts.push(dir==='morning'?'Mattina':'Sera');return parts.filter(Boolean).join(' - ')}"
+          assert old in s, 'reportLabel v3 not found'
+          s=s.replace(old,new,1)
+
+          old="function fileLabel(){var p=$('period').value,rr=range(),aa=rr[0],bb=rr[1],label;if(p==='today'){label=aa.replace(/-/g,'')}else if(p==='custom'){label=aa.replace(/-/g,'')+'-'+bb.replace(/-/g,'')}else if(p==='week'){label='Questa_settimana_'+aa.replace(/-/g,'')+'-'+bb.replace(/-/g,'')}else if(p==='prevweek'){label='Settimana_precedente_'+aa.replace(/-/g,'')+'-'+bb.replace(/-/g,'')}else if(p==='month'){var md=new Date(aa+'T00:00:00');label=monthName(md)+'_'+md.getFullYear()}else if(p==='prevyear'){label='Anno_'+new Date(aa+'T00:00:00').getFullYear()}else if(p==='ytd'){label='Anno_corrente_'+aa.replace(/-/g,'')+'-'+bb.replace(/-/g,'')}else{label='Da_inizio_archivio_'+aa.replace(/-/g,'')+'-'+bb.replace(/-/g,'')}if(line!=='all')label+='_'+line;if(dir!=='all')label+='_'+(dir==='morning'?'Mattina':'Sera');return label.replace(/\\s+/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'')}"
+          new="function fileLabel(){var p=$('period').value,aa=a,bb=b,label;if(p==='today'){label=aa.replace(/-/g,'')}else if(p==='custom'){label=aa.replace(/-/g,'')+'-'+bb.replace(/-/g,'')}else if(p==='week'){label='Questa_settimana_'+aa.replace(/-/g,'')+'-'+bb.replace(/-/g,'')}else if(p==='prevweek'){label='Settimana_precedente_'+aa.replace(/-/g,'')+'-'+bb.replace(/-/g,'')}else if(p==='month'){var md=new Date(aa+'T00:00:00');label=monthName(md)+'_'+md.getFullYear()}else if(p==='prevyear'){label='Anno_'+new Date(aa+'T00:00:00').getFullYear()}else if(p==='ytd'){label='Anno_corrente_'+aa.replace(/-/g,'')+'-'+bb.replace(/-/g,'')}else{label='Da_inizio_archivio_'+aa.replace(/-/g,'')+'-'+bb.replace(/-/g,'')}if(line!=='all')label+='_'+line;if(dir!=='all')label+='_'+(dir==='morning'?'Mattina':'Sera');return label.replace(/\\s+/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'')}"
+          assert old in s, 'fileLabel v3 not found'
+          s=s.replace(old,new,1)
+
+          p.write_text(s)
+          PY
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path('index.html').read_text()
+          m=re.search(r'<script>\(function\(\)\{.*?</script>',s,re.S)
+          assert m, 'main script not found'
+          Path('/tmp/dashboard.js').write_text(m.group(0)[8:-9])
+          PY
+          node --check /tmp/dashboard.js
+      - name: Commit patch
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Fix PDF period label scope' || exit 0
+          git push
