@@ -1,0 +1,45 @@
+name: UI filtri
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  fix:
+    if: github.event.head_commit.message != 'Apply UI filtri fix'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply UI changes
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          old='''<div><button id="refresh" class="refresh">↻ Aggiorna dati</button> <button id="export" class="export">↓ Scarica PDF</button></div>'''
+          new='''<div><button id="refresh" class="refresh">↻ Aggiorna dati</button></div>'''
+          assert old in s, 'status buttons pattern not found'
+          s=s.replace(old,new,1)
+          old='''<button id="apply">Applica</button>'''
+          new='''<button id="apply">Applica</button> <button id="reset" class="reset">Reset</button> <button id="export" class="export">↓ Scarica PDF</button>'''
+          assert old in s, 'apply button pattern not found'
+          s=s.replace(old,new,1)
+          old='''button{cursor:pointer}.refresh,.export{font-weight:700}.export{background:#17202a;color:#fff;border-color:#17202a}'''
+          new='''button{cursor:pointer}.refresh,.export,.reset{font-weight:700}.export,.reset{background:#17202a;color:#fff;border-color:#17202a}'''
+          assert old in s, 'button css pattern not found'
+          s=s.replace(old,new,1)
+          marker='''</script></body></html>'''
+          extra='''<script>document.getElementById('reset').onclick=function(){document.getElementById('period').value='all';document.getElementById('line').value='all';document.getElementById('direction').value='all';document.getElementById('from').value='';document.getElementById('to').value='';document.getElementById('from').hidden=true;document.getElementById('to').hidden=true;PAGE=1;render();};</script></body></html>'''
+          assert marker in s, 'script end marker not found'
+          s=s.replace(marker,extra,1)
+          p.write_text(s)
+          PY
+      - name: Commit and remove workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/_ui_filters_fix.yml
+          git commit -m "Apply UI filtri"
+          git rm .github/workflows/_ui_filters_fix.yml
+          git commit -m "Remove temporary UI workflow"
+          git push
