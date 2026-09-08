@@ -1,0 +1,24 @@
+name: Diagnose PDF
+on:
+  push:
+    paths:
+      - '.github/workflows/_diagnose_pdf.yml'
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect export handler
+        run: |
+          python - <<'PY'
+          t=open('index.html',encoding='utf-8').read()
+          for key in ['getElementById(\'export\')','getElementById("export")','addEventListener(\'click\'','addEventListener("click"']:
+              i=t.find(key)
+              if i>=0:
+                  print('\nFOUND',key)
+                  print(t[max(0,i-500):i+2500])
+          print('\nPDF LIBS:')
+          print('jspdf' in t.lower(), 'autotable' in t.lower())
+          PY
