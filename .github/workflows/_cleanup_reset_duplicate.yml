@@ -1,0 +1,33 @@
+name: Cleanup Reset duplicate
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  cleanup:
+    if: github.event.head_commit.message != 'Cleanup Reset duplicate'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove duplicate handler
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('index.html')
+          s=p.read_text()
+          pattern=r"<script>document\.getElementById\('reset'\)\.onclick=function\(\)\{.*?PAGE=1;render\(\);\};</script>"
+          s2,n=re.subn(pattern,'',s,count=1,flags=re.S)
+          assert n==1, f'duplicate handler matches: {n}'
+          p.write_text(s2)
+          PY
+      - name: Commit and remove workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/_cleanup_reset_duplicate.yml
+          git commit -m "Cleanup Reset duplicate"
+          git rm .github/workflows/_cleanup_reset_duplicate.yml
+          git commit -m "Remove temporary cleanup workflow"
+          git push
