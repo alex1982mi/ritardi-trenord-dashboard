@@ -1,0 +1,36 @@
+name: Fix reset
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  fix:
+    if: github.event.head_commit.message != 'Fix Reset scope'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix reset scope
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          bad="""<script>document.getElementById('reset').onclick=function(){document.getElementById('reset').onclick=function(){document.getElementById('period').value='all';document.getElementById('line').value='all';document.getElementById('direction').value='all';document.getElementById('from').value='';document.getElementById('to').value='';document.getElementById('from').hidden=true;document.getElementById('to').hidden=true;PAGE=1;render();};</script>"""
+          # Remove the previously appended external reset handler if present.
+          if bad in s: s=s.replace(bad,'',1)
+          old="</script></body></html>"
+          handler="""$('reset').onclick=function(){ $('period').value='all'; $('line').value='all'; $('direction').value='all'; $('from').value=''; $('to').value=''; $('from').hidden=true; $('to').hidden=true; PAGE=1; render(); };})();</script></body></html>"""
+          assert old in s, 'script closing marker not found'
+          s=s.replace(old,handler,1)
+          p.write_text(s)
+          PY
+      - name: Commit and remove workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/_fix_reset_scope.yml
+          git commit -m "Fix Reset scope"
+          git rm .github/workflows/_fix_reset_scope.yml
+          git commit -m "Remove temporary Reset workflow"
+          git push
