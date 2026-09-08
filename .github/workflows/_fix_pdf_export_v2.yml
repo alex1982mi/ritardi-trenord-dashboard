@@ -48,19 +48,22 @@ jobs:
           assert old in s, 'fileLabel function not found'
           s=s.replace(old,new,1)
 
-          old="if(a.slice(0,4)===b.slice(0,4))return monthName(da)+'–'+monthName(db)+' '+da.getFullYear();return fmtDate(a)+'–'+fmtDate(b)"
-          new="if(a.slice(0,4)===b.slice(0,4))return monthName(da)+'–'+monthName(db)+' '+da.getFullYear();return fmtDate(a)+'–'+fmtDate(b)"
-          assert old in s, 'period label anchor not found'
-
-          # Custom/multi-month date filenames use numeric dates with underscores,
-          # while the visible PDF title keeps the human-readable en dash.
           old="function fileLabel(){return reportLabel().replace(/–/g,'_').replace(/↔/g,'_').replace(/\\//g,'_').replace(/\\s+/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'')}"
-          new="function fileLabel(){var label=reportLabel();if(/\\d{2}\\/\\d{2}\\/\\d{4}–/.test(label))label=label.replace(/(\\d{2})\\/(\\d{2})\\/(\\d{4})–(\\d{2})\\/(\\d{2})\\/(\\d{4})/,'$1_$2_$3_$4_$5_$6');return label.replace(/–/g,'_').replace(/↔/g,'_').replace(/\\//g,'_').replace(/\\s+/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'')}"
+          new="function fileLabel(){var label=reportLabel();return label.replace(/–/g,'_').replace(/↔/g,'_').replace(/\\//g,'_').replace(/\\s+/g,'_').replace(/-+/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'')}"
+          assert old in s, 'updated fileLabel function not found'
           s=s.replace(old,new,1)
 
           p.write_text(s)
           PY
-          node --check <(python3 -c "import re; s=open('index.html').read(); print(re.search(r'<script>\\(function\\(\\){.*?</script>',s,re.S).group(0)[8:-9])")
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path('index.html').read_text()
+          m=re.search(r'<script>\(function\(\)\{.*?</script>',s,re.S)
+          assert m, 'main script not found'
+          Path('/tmp/dashboard.js').write_text(m.group(0)[8:-9])
+          PY
+          node --check /tmp/dashboard.js
       - name: Commit patch
         shell: bash
         run: |
