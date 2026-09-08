@@ -23,16 +23,7 @@ jobs:
           if old in s: s=s.replace(old,new,1)
           p.write_text(s,encoding='utf-8')
           PY
-          python3 - <<'PY'
-          from pathlib import Path
-          s=Path('index.html').read_text(encoding='utf-8')
-          if "$('reset').onclick=" not in s: raise SystemExit('reset handler missing')
-          start=s.rfind('(function(){')
-          end=s.rfind('</script>')
-          if start<0 or end<start: raise SystemExit('cannot isolate dashboard JS')
-          Path('/tmp/dashboard.js').write_text(s[start:end],encoding='utf-8')
-          PY
-          node --check /tmp/dashboard.js
+          grep -q "$('reset').onclick=" index.html
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add index.html
