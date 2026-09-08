@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Esporta monitoraggio · Melzo ↔ Milano Repubblica</title>
+<style>
+:root{font-family:Inter,system-ui,-apple-system,sans-serif;color:#17202a;background:#f5f7fa}*{box-sizing:border-box}body{margin:0}.wrap{max-width:900px;margin:auto;padding:28px}.panel{background:#fff;border:1px solid #dde2e7;border-radius:14px;padding:20px;margin-bottom:18px}h1{font-size:24px;margin:0 0 5px}.muted{color:#68737d;font-size:13px}.filters{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}select,input,button{font:inherit;border:1px solid #ccd3da;border-radius:9px;padding:10px 12px;background:#fff}button{cursor:pointer;font-weight:700}.primary{background:#17202a;color:#fff;border-color:#17202a}.preview h2{font-size:17px;margin:0 0 12px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.box{border:1px solid #edf0f2;border-radius:10px;padding:14px}.box b{display:block;font-size:22px;margin-top:4px}.table{width:100%;border-collapse:collapse;font-size:13px}.table th,.table td{text-align:left;padding:8px;border-bottom:1px solid #edf0f2}.hidden{display:none}@media(max-width:600px){.grid{grid-template-columns:1fr}.wrap{padding:16px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section class="panel">
+<h1>Esporta monitoraggio</h1>
+<div class="muted">Melzo ↔ Milano Repubblica · sintesi aggregata e condivisibile</div>
+<div class="filters">
+<select id="period"><option value="month">Questo mese</option><option value="prevmonth">Mese precedente</option><option value="3m">Ultimi 3 mesi</option><option value="6m">Ultimi 6 mesi</option><option value="ytd">Questo anno</option><option value="custom">Intervallo personalizzato</option></select>
+<input id="from" type="date" class="hidden"><input id="to" type="date" class="hidden">
+<button class="primary" id="download">↓ Scarica PDF</button>
+</div>
+</section>
+<section class="panel preview">
+<h2 id="title">Periodo selezionato</h2>
+<div class="grid">
+<div class="box"><div class="muted">Corse monitorate</div><b id="runs">—</b></div>
+<div class="box"><div class="muted">Corse con ritardo</div><b id="delayed">—</b></div>
+<div class="box"><div class="muted">Ritardo medio</div><b id="avg">—</b></div>
+<div class="box"><div class="muted">Cancellazioni</div><b id="cancel">—</b></div>
+</div>
+<h2 style="margin-top:22px">I miei viaggi</h2>
+<div class="grid">
+<div class="box"><div class="muted">Viaggi registrati</div><b id="pruns">—</b></div>
+<div class="box"><div class="muted">Viaggi con ritardo</div><b id="pdelayed">—</b></div>
+<div class="box"><div class="muted">Ritardo medio</div><b id="pavg">—</b></div>
+<div class="box"><div class="muted">Cancellazioni</div><b id="pcancel">—</b></div>
+</div>
+</section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
+<script>
+(function(){'use strict';
+let DATA={episodes:[]}, SEL={};
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,'0');
+const iso=d=>d.toISOString().slice(0,10);
+const fmt=d=>d.toLocaleDateString('it-IT');
+function monthStart(d){return new Date(d.getFullYear(),d.getMonth(),1)}
+function monthEnd(d){return new Date(d.getFullYear(),d.getMonth()+1,0)}
+function ranges(){let p=$('period').value,n=new Date(),a,b;
+ if(p==='month'){a=monthStart(n);b=monthEnd(n)}
+ else if(p==='prevmonth'){a=new Date(n.getFullYear(),n.getMonth()-1,1);b=new Date(n.getFullYear(),n.getMonth(),0)}
+ else if(p==='3m'){a=new Date(n.getFullYear(),n.getMonth()-2,1);b=monthEnd(n)}
+ else if(p==='6m'){a=new Date(n.getFullYear(),n.getMonth()-5,1);b=monthEnd(n)}
+ else if(p==='ytd'){a=new Date(n.getFullYear(),0,1);b=n}
+ else {a=new Date($('from').value+'T00:00:00');b=new Date(($('to').value||iso(n))+'T00:00:00')}
+ return [iso(a),iso(b)]}
+function metrics(){let [a,b]=ranges(),rows=DATA.episodes.filter(e=>e.service_date>=a&&e.service_date<=b),d=rows.filter(e=>!e.cancelled&&Number.isFinite(e.segment_delay)),del=d.filter(e=>e.segment_delay>0),p=[];
+ rows.forEach(e=>{let s=SEL[e.service_date]?.[e.direction];if(s&&s!=='ASSENZA'&&s!=='NESSUN_TRENO'&&s===e.slot_id)p.push(e)});
+ let pd=p.filter(e=>!e.cancelled&&Number.isFinite(e.segment_delay)),pdel=pd.filter(e=>e.segment_delay>0);
+ return {a,b,rows,d,del,p,pd,pdel,cancel:rows.filter(e=>e.cancelled).length,pcancel:p.filter(e=>e.cancelled).length,avg:d.length?d.reduce((s,e)=>s+e.segment_delay,0)/d.length:0,pavg:pd.length?pd.reduce((s,e)=>s+e.segment_delay,0)/pd.length:0}}
+function render(){let m=metrics();$('title').textContent=fmt(new Date(m.a+'T00:00:00'))+' – '+fmt(new Date(m.b+'T00:00:00'));$('runs').textContent=m.rows.length;$('delayed').textContent=m.del.length;$('avg').textContent=m.avg.toFixed(1)+' min';$('cancel').textContent=m.cancel;$('pruns').textContent=m.p.length;$('pdelayed').textContent=m.pdel.length;$('pavg').textContent=m.pavg.toFixed(1)+' min';$('pcancel').textContent=m.pcancel}
+async function load(){let [d,s]=await Promise.all([fetch('data/dashboard.json?ts='+Date.now()).then(r=>r.json()),fetch('data/personal_selections.csv?ts='+Date.now()).then(r=>r.text())]);DATA=d;SEL={};let lines=s.trim().split(/\r?\n/).slice(1);lines.forEach(line=>{let m=line.match(/^"([^"]*)","([^"]*)","([^"]*)","([^"]*)"$/);if(!m)return;(SEL[m[1]]??={})[m[2]]=m[3]});render()}
+$('period').onchange=()=>{let c=$('period').value==='custom';$('from').classList.toggle('hidden',!c);$('to').classList.toggle('hidden',!c);render()};$('from').onchange=render;$('to').onchange=render;
+$('download').onclick=()=>{let m=metrics(),{jsPDF}=window.jspdf,doc=new jsPDF({unit:'mm',format:'a4'}),y0=20;doc.setFontSize(17);doc.text('MONITORAGGIO DEL SERVIZIO FERROVIARIO',105,y0,{align:'center'});doc.setFontSize(10);doc.setTextColor(100);doc.text('Melzo ↔ Milano Repubblica · '+fmt(new Date(m.a+'T00:00:00'))+' – '+fmt(new Date(m.b+'T00:00:00')),105,y0+7,{align:'center'});doc.setTextColor(23);let y=42;doc.setFontSize(13);doc.text('Situazione generale',18,y);y+=9;const general=[['Corse monitorate',m.rows.length],['Corse con ritardo',m.del.length],['Ritardo medio',m.avg.toFixed(1)+' min'],['Cancellazioni',m.cancel]];general.forEach(x=>{doc.setFontSize(10);doc.text(x[0],22,y);doc.setFontSize(13);doc.text(String(x[1]),170,y,{align:'right'});y+=8});y+=8;doc.setFontSize(13);doc.text('I miei viaggi',18,y);y+=9;const personal=[['Viaggi registrati',m.p.length],['Viaggi con ritardo',m.pdel.length],['Ritardo medio',m.pavg.toFixed(1)+' min'],['Cancellazioni',m.pcancel]];personal.forEach(x=>{doc.setFontSize(10);doc.text(x[0],22,y);doc.setFontSize(13);doc.text(String(x[1]),170,y,{align:'right'});y+=8});y+=10;doc.setFontSize(12);doc.text('Metodologia e criteri di rilevazione',18,y);y+=7;doc.setFontSize(8.5);let text='Il monitoraggio riguarda le corse S5/S6 nelle fasce mattutina e serale del collegamento Melzo ↔ Milano Repubblica. Le rilevazioni sono acquisite automaticamente da informazioni pubbliche RFI. Il KPI principale misura il ritardo accumulato sul tratto: al mattino ritardo a Repubblica meno ritardo a Melzo; alla sera ritardo a Melzo meno ritardo a Repubblica. Un eventuale recupero di ritardo sul tratto è posto a 0. Le cancellazioni sono conteggiate separatamente. Le statistiche includono solo episodi con dati sufficienti per il calcolo; i dati insufficienti non vengono trattati come ritardi pari a zero. I miei viaggi sono quelli registrati per la specifica data e direzione; assenza e altro/nessun treno non sono conteggiati come viaggi personali.';doc.setTextColor(75);doc.text(doc.splitTextToSize(text,170),18,y);doc.setTextColor(23);doc.save('Monitoraggio_'+m.a+'_'+m.b+'.pdf')};
+load().catch(e=>{document.body.insertAdjacentHTML('beforeend','<p style="padding:20px">Impossibile caricare i dati.</p>');console.error(e)})
+})();
+</script>
+</body></html>
