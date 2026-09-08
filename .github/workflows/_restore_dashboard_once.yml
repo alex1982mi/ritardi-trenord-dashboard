@@ -47,7 +47,9 @@ jobs:
           start=s.rfind('(function(){')
           end=s.rfind('</body></html>')
           if start < 0 or end <= start: raise SystemExit('cannot isolate dashboard JS')
-          Path('/tmp/dashboard.js').write_text(s[start:end], encoding='utf-8')
+          js=s[start:end]
+          js=js.replace("$('export').onclick=exportPdf;load()document.getElementById('reset').onclick", "$('export').onclick=exportPdf;load();document.getElementById('reset').onclick")
+          Path('/tmp/dashboard.js').write_text(js, encoding='utf-8')
           PY
           node --check /tmp/dashboard.js
           grep -q 'id="reset"' index.html
