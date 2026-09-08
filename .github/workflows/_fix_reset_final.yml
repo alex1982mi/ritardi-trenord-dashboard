@@ -20,8 +20,7 @@ jobs:
               s=s.replace(marker,reset+marker,1)
           old="async function load(){setStatus(true,'Aggiornamento in corso…');try{var ts=Date.now(),res=await Promise.all([fetch('data/dashboard.json?ts='+ts,{cache:'no-store'}),fetch('data/personal_selections.csv?ts='+ts,{cache:'no-store'})]);if(!res[0].ok||!res[1].ok)throw Error('HTTP');DATA=await res[0].json();SEL=parseCsv(await res[1].text());var dt=new Date(DATA.generated_at);setStatus(true,'Ultimo aggiornamento: '+dt.toLocaleString('it-IT',{dateStyle:'short',timeStyle:'medium'}));PAGE=1;render()}catch(e){setStatus(false,'Impossibile aggiornare i dati.');if(DATA.episodes.length)render()}}"
           new="async function load(){setStatus(true,'Aggiornamento in corso…');try{var ts=Date.now(),res=await fetch('data/dashboard.json?ts='+ts,{cache:'no-store'});if(!res.ok)throw Error('dashboard HTTP');DATA=await res.json();try{var sres=await fetch('data/personal_selections.csv?ts='+ts,{cache:'no-store'});SEL=sres.ok?parseCsv(await sres.text()):{}}catch(_e){SEL={}}var dt=new Date(DATA.generated_at);setStatus(true,'Ultimo aggiornamento: '+dt.toLocaleString('it-IT',{dateStyle:'short',timeStyle:'medium'}));PAGE=1;render()}catch(e){setStatus(false,'Impossibile aggiornare i dati.');if(DATA.episodes.length)render()}}"
-          if old in s:
-              s=s.replace(old,new,1)
+          if old in s: s=s.replace(old,new,1)
           p.write_text(s,encoding='utf-8')
           PY
           python3 - <<'PY'
@@ -29,7 +28,7 @@ jobs:
           s=Path('index.html').read_text(encoding='utf-8')
           if "$('reset').onclick=" not in s: raise SystemExit('reset handler missing')
           start=s.rfind('(function(){')
-          end=s.rfind('</body></html>')
+          end=s.rfind('</script>')
           if start<0 or end<start: raise SystemExit('cannot isolate dashboard JS')
           Path('/tmp/dashboard.js').write_text(s[start:end],encoding='utf-8')
           PY
