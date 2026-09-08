@@ -28,9 +28,10 @@ jobs:
           from pathlib import Path
           s=Path('index.html').read_text(encoding='utf-8')
           if "$('reset').onclick=" not in s: raise SystemExit('reset handler missing')
-          if '<script>' not in s: raise SystemExit('inline script missing')
-          js=s.rsplit('<script>',1)[1].split('</script>',1)[0]
-          Path('/tmp/dashboard.js').write_text(js,encoding='utf-8')
+          start=s.rfind('(function(){')
+          end=s.rfind('</body></html>')
+          if start<0 or end<start: raise SystemExit('cannot isolate dashboard JS')
+          Path('/tmp/dashboard.js').write_text(s[start:end],encoding='utf-8')
           PY
           node --check /tmp/dashboard.js
           git config user.name github-actions[bot]
