@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T20:59:12.477372+02:00",
+  "generated_at": "2026-09-09T07:14:51.626856+02:00",
   "services": {
     "2026-09-04": {
       "PM_S5_1758": {
@@ -125,6 +125,26 @@
         "destination": "Melzo",
         "scheduled_time": "18:28",
         "train": "24563"
+      }
+    },
+    "2026-09-09": {
+      "AM_S5_0759": {
+        "slot_id": "AM_S5_0759",
+        "line": "S5",
+        "direction": "morning",
+        "origin": "Melzo",
+        "destination": "Milano Repubblica",
+        "scheduled_time": "07:59",
+        "train": "24522"
+      },
+      "AM_S5_0829": {
+        "slot_id": "AM_S5_0829",
+        "line": "S5",
+        "direction": "morning",
+        "origin": "Melzo",
+        "destination": "Milano Repubblica",
+        "scheduled_time": "08:29",
+        "train": "24524"
       }
     }
   }
