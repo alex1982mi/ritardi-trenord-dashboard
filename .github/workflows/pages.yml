@@ -37,7 +37,6 @@ jobs:
 
           js = js.replace('[[ARROW]]', '<>')
 
-          # Remove old graphical-arrow wrappers that can recurse through doc.text.
           js = re.sub(
               r"var _pdfText=doc\.text\.bind\(doc\);function _routeDraw\(t,x,y,o\)\{.*?\};(?=function setFont)",
               "",
@@ -46,7 +45,6 @@ jobs:
               flags=re.S,
           )
 
-          # Header route: literal ASCII <>.
           js = re.sub(
               r"function routeLabel\(y\)\{.*?\}routeLabel\(y\+13\);",
               "function routeLabel(y){doc.text('Melzo <> Milano Repubblica',W/2,y,{align:'center'})}routeLabel(y+13);",
@@ -55,19 +53,16 @@ jobs:
               flags=re.S,
           )
 
-          # Personal comparison values: blue.
           js = js.replace(
               "if(data.column.index===2&&data.cell.raw!=='—'){var positive=String(data.cell.raw).charAt(0)==='+';data.cell.styles.textColor=positive?[196,61,61]:[47,125,74]}",
               "if(data.column.index===2&&data.cell.raw!=='—')data.cell.styles.textColor=[0,102,204]"
           )
 
-          # No artificial spaces before punctuation in rich text.
           js = js.replace(
               "if(i) x+=doc.getTextWidth(' ');doc.text(w.text,x,y);",
               "if(i && !/^[,.;:!?%)]/.test(w.text)) x+=doc.getTextWidth(' ');doc.text(w.text,x,y);"
           )
 
-          # RFI links: no spaces before commas.
           js = js.replace(
               "fx+=doc.getTextWidth('Monitor Arrivi & Partenze Live')+3;doc.setTextColor(0,0,0);doc.text(',',fx,y);",
               "fx+=doc.getTextWidth('Monitor Arrivi & Partenze Live');doc.setTextColor(0,0,0);doc.text(',',fx,y);"
@@ -77,25 +72,17 @@ jobs:
               "fx+=doc.getTextWidth('Melzo');doc.setTextColor(0,0,0);doc.text(',',fx,y);"
           )
 
-          # Missing-data sentence: specifically bold the requested phrase.
+          # Force the exact phrase into its own bold rich-text segment.
           phrase = 'il dato viene ricostruito quando sono disponibili informazioni RFI sufficienti a determinarlo'
-          target = "{text:'Qualora una rilevazione non risulti disponibile in uno dei punti di osservazione (Melzo / Milano Repubblica), il dato viene ricostruito quando sono disponibili informazioni RFI sufficienti a determinarlo con ragionevole attendibilità. "
-          replacement = "{text:'Qualora una rilevazione non risulti disponibile in uno dei punti di osservazione (Melzo / Milano Repubblica), '},{text:'il dato viene ricostruito quando sono disponibili informazioni RFI sufficienti a determinarlo',bold:true},{text:' con ragionevole attendibilità. "
-          if target in js:
-              js = js.replace(target, replacement, 1)
-          else:
-              # Fallback: split the phrase in the first occurrence inside a rich-text call.
+          marker = "{text:'Qualora una rilevazione non risulti disponibile in uno dei punti di osservazione (Melzo / Milano Repubblica), "
+          if marker in js and phrase in js:
               js = js.replace(
-                  phrase,
-                  phrase,
+                  marker + phrase + " con ragionevole attendibilità. ",
+                  marker + "'},{text:'" + phrase + "',bold:true},{text:' con ragionevole attendibilità. ",
                   1
               )
-              js = re.sub(
-                  r"\{text:'([^']*?)" + re.escape(phrase) + r"([^']*?)'\}",
-                  lambda m: "{text:'" + m.group(1) + "'},{text:'" + phrase + "',bold:true},{text:'" + m.group(2) + "'}",
-                  js,
-                  count=1,
-              )
+          else:
+              raise SystemExit('Missing-data phrase not found in expected PDF rich-text block')
 
           p.write_text(head + js, encoding='utf-8')
           print('PDF formatting/runtime patch applied')
