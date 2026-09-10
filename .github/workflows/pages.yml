@@ -38,6 +38,16 @@ jobs:
           # PDF only: use literal ASCII <> instead of the unsupported ↔ glyph/vector arrow.
           js = js.replace('[[ARROW]]', '<>')
 
+          # Remove the old graphical-arrow wrappers. Multiple copies had accumulated
+          # and shadowed _pdfText, causing recursive doc.text calls and breaking export.
+          js = re.sub(
+              r"var _pdfText=doc\.text\.bind\(doc\);function _routeDraw\(t,x,y,o\)\{.*?\};(?=function setFont)",
+              "",
+              js,
+              count=1,
+              flags=re.S,
+          )
+
           # Replace the graphical route arrow in the PDF header with literal <>.
           js = re.sub(
               r"function routeLabel\(y\)\{.*?\}routeLabel\(y\+13\);",
@@ -75,7 +85,7 @@ jobs:
           js = js.replace(old, new, 1)
 
           p.write_text(head + js, encoding='utf-8')
-          print('PDF formatting patch applied')
+          print('PDF formatting/runtime patch applied')
       - uses: actions/configure-pages@v5
         with:
           enablement: true
