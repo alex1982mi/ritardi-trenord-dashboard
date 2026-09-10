@@ -7,4 +7,5 @@ service_date,direction,selection,updated_at
 "2026-09-08","morning","NESSUN_TRENO","2026-09-08T06:16:36.658Z"
 "2026-09-09","evening","NESSUN_TRENO","2026-09-09T15:49:54.252Z"
 "2026-09-09","morning","AM_S5_0829","2026-09-09T06:24:38.026Z"
+"2026-09-10","evening","PM_S5_1828","2026-09-10T16:09:03.742Z"
 "2026-09-10","morning","AM_S5_0829","2026-09-10T05:50:17.373Z"
