@@ -7,22 +7,22 @@ permissions:
   contents: write
 jobs:
   fix:
-    if: github.event.head_commit.message != 'Fix dashboard JavaScript 2'
+    if: github.event.head_commit.message != 'Fix dashboard JavaScript 3'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - name: Fix apostrophes
+      - name: Neutralize apostrophes in JS strings
         run: |
           python3 - <<'PY'
           from pathlib import Path
           p=Path('index.html')
           s=p.read_text()
-          for old,new in [("dall'orario previsto","dall\\'orario previsto"),("nell'archivio","nell\\'archivio")]:
-              if old in s: s=s.replace(old,new,1)
+          for old in ["nell'altro","dall'orario previsto","nell'archivio"]:
+              s=s.replace(old, old.split("'")[0]+'\\u0027'+old.split("'",1)[1])
           p.write_text(s)
           PY
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add index.html
-          git commit -m "Fix dashboard JavaScript 2"
+          git commit -m "Fix dashboard JavaScript 3"
           git push
