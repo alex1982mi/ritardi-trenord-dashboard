@@ -35,11 +35,9 @@ jobs:
               raise SystemExit('Inline PDF script not found')
           head, js = s[:start], s[start:]
 
-          # PDF only: use literal ASCII <> instead of the unsupported ↔ glyph/vector arrow.
           js = js.replace('[[ARROW]]', '<>')
 
-          # Remove the old graphical-arrow wrappers. Multiple copies had accumulated
-          # and shadowed _pdfText, causing recursive doc.text calls and breaking export.
+          # Remove old graphical-arrow wrappers that can recurse through doc.text.
           js = re.sub(
               r"var _pdfText=doc\.text\.bind\(doc\);function _routeDraw\(t,x,y,o\)\{.*?\};(?=function setFont)",
               "",
@@ -48,7 +46,7 @@ jobs:
               flags=re.S,
           )
 
-          # Replace the graphical route arrow in the PDF header with literal <>.
+          # Header route: literal ASCII <>.
           js = re.sub(
               r"function routeLabel\(y\)\{.*?\}routeLabel\(y\+13\);",
               "function routeLabel(y){doc.text('Melzo <> Milano Repubblica',W/2,y,{align:'center'})}routeLabel(y+13);",
@@ -57,19 +55,19 @@ jobs:
               flags=re.S,
           )
 
-          # Personal comparison values are links-style blue, not green.
+          # Personal comparison values: blue.
           js = js.replace(
               "if(data.column.index===2&&data.cell.raw!=='—'){var positive=String(data.cell.raw).charAt(0)==='+';data.cell.styles.textColor=positive?[196,61,61]:[47,125,74]}",
               "if(data.column.index===2&&data.cell.raw!=='—')data.cell.styles.textColor=[0,102,204]"
           )
 
-          # Remove spaces before punctuation introduced by the rich-text renderer.
+          # No artificial spaces before punctuation in rich text.
           js = js.replace(
               "if(i) x+=doc.getTextWidth(' ');doc.text(w.text,x,y);",
               "if(i && !/^[,.;:!?%)]/.test(w.text)) x+=doc.getTextWidth(' ');doc.text(w.text,x,y);"
           )
 
-          # RFI links: commas are black and there are no spaces before them.
+          # RFI links: no spaces before commas.
           js = js.replace(
               "fx+=doc.getTextWidth('Monitor Arrivi & Partenze Live')+3;doc.setTextColor(0,0,0);doc.text(',',fx,y);",
               "fx+=doc.getTextWidth('Monitor Arrivi & Partenze Live');doc.setTextColor(0,0,0);doc.text(',',fx,y);"
@@ -79,10 +77,25 @@ jobs:
               "fx+=doc.getTextWidth('Melzo');doc.setTextColor(0,0,0);doc.text(',',fx,y);"
           )
 
-          # The requested missing-data phrase is bold.
-          old = "y=rich([{text:'Gestione dei dati mancanti. ',bold:true},{text:'Qualora una rilevazione non risulti disponibile in uno dei punti di osservazione (Melzo / Milano Repubblica), il dato viene ricostruito quando sono disponibili informazioni RFI sufficienti a determinarlo con ragionevole attendibilità. La ricostruzione può basarsi sul ritardo rilevato per la stessa corsa nell'altro punto di osservazione oppure su informazioni di ritardo pubblicate da RFI in prossimità dell'orario previsto. I dati ricostruiti non vengono stimati arbitrariamente: vengono utilizzate esclusivamente informazioni effettivamente disponibili nell'archivio delle rilevazioni. Qualora non sussistano elementi sufficienti per una ricostruzione, il dato viene mantenuto come non disponibile.'}]);"
-          new = "y=rich([{text:'Gestione dei dati mancanti. ',bold:true},{text:'Qualora una rilevazione non risulti disponibile in uno dei punti di osservazione (Melzo / Milano Repubblica), '},{text:'il dato viene ricostruito quando sono disponibili informazioni RFI sufficienti a determinarlo',bold:true},{text:' con ragionevole attendibilità. La ricostruzione può basarsi sul ritardo rilevato per la stessa corsa nell'altro punto di osservazione oppure su informazioni di ritardo pubblicate da RFI in prossimità dell'orario previsto. I dati ricostruiti non vengono stimati arbitrariamente: vengono utilizzate esclusivamente informazioni effettivamente disponibili nell'archivio delle rilevazioni. Qualora non sussistano elementi sufficienti per una ricostruzione, il dato viene mantenuto come non disponibile.'}]);"
-          js = js.replace(old, new, 1)
+          # Missing-data sentence: specifically bold the requested phrase.
+          phrase = 'il dato viene ricostruito quando sono disponibili informazioni RFI sufficienti a determinarlo'
+          target = "{text:'Qualora una rilevazione non risulti disponibile in uno dei punti di osservazione (Melzo / Milano Repubblica), il dato viene ricostruito quando sono disponibili informazioni RFI sufficienti a determinarlo con ragionevole attendibilità. "
+          replacement = "{text:'Qualora una rilevazione non risulti disponibile in uno dei punti di osservazione (Melzo / Milano Repubblica), '},{text:'il dato viene ricostruito quando sono disponibili informazioni RFI sufficienti a determinarlo',bold:true},{text:' con ragionevole attendibilità. "
+          if target in js:
+              js = js.replace(target, replacement, 1)
+          else:
+              # Fallback: split the phrase in the first occurrence inside a rich-text call.
+              js = js.replace(
+                  phrase,
+                  phrase,
+                  1
+              )
+              js = re.sub(
+                  r"\{text:'([^']*?)" + re.escape(phrase) + r"([^']*?)'\}",
+                  lambda m: "{text:'" + m.group(1) + "'},{text:'" + phrase + "',bold:true},{text:'" + m.group(2) + "'}",
+                  js,
+                  count=1,
+              )
 
           p.write_text(head + js, encoding='utf-8')
           print('PDF formatting/runtime patch applied')
