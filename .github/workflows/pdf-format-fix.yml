@@ -17,31 +17,48 @@ jobs:
         shell: python
         run: |
           from pathlib import Path
+          import re
+
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
+          start = s.find('<script>(function(){')
+          if start < 0:
+              raise SystemExit('Inline PDF script not found')
 
-          old = "doc.text('La linea rappresenta il ritardo medio mensile accumulato esclusivamente sul tratto Melzo ↔ Milano Repubblica.',left,110);"
-          new = "var chartNote=doc.splitTextToSize('La linea rappresenta il ritardo medio mensile accumulato esclusivamente sul tratto Melzo ↔ Milano Repubblica.',160);doc.text(chartNote,left,110);"
-          if old in s:
-              s = s.replace(old, new, 1)
+          head, js = s[:start], s[start:]
 
-          old = "doc.text('Melzo ↔ Milano Repubblica',W/2,y+13,{align:'center'});"
-          new = "function routeLabel(y){var a='Melzo',b='Milano Repubblica',gap=7,aw=12,total=doc.getTextWidth(a)+gap+aw+gap+doc.getTextWidth(b),x=(W-total)/2;doc.text(a,x,y);x+=doc.getTextWidth(a)+gap;var ay=y-1.4;doc.setDrawColor(104,115,125);doc.setLineWidth(0.35);doc.line(x,ay,x+aw,ay);doc.line(x,ay,x+2,ay-1.2);doc.line(x,ay,x+2,ay+1.2);doc.line(x+aw,ay,x+aw-2,ay-1.2);doc.line(x+aw,ay,x+aw-2,ay+1.2);x+=aw+gap;doc.text(b,x,y)}routeLabel(y+13);"
-          if old in s:
-              s = s.replace(old, new, 1)
+          # Helvetica in jsPDF does not contain U+2194. Replace it only in the
+          # PDF script with a private one-character marker and render that
+          # marker as a vector bidirectional arrow.
+          js = js.replace('↔', '\\u001e')
 
+          # Render the marker without relying on a Unicode glyph. This also
+          # handles the marker when it occurs as a standalone methodology token
+          # or inside a longer chart/header string.
+          inject = r'''var _pdfText=doc.text.bind(doc);function _routeDraw(t,x,y,o){var parts=String(t).split("\\u001e"),aw=8,gap=2,total=0,i;for(i=0;i<parts.length;i++){total+=doc.getTextWidth(parts[i]);if(i<parts.length-1)total+=aw+gap*2}var xx=x;if(o&&o.align==='center')xx=x-total/2;for(i=0;i<parts.length;i++){if(parts[i]){_pdfText(parts[i],xx,y,{align:'left'});xx+=doc.getTextWidth(parts[i])}if(i<parts.length-1){xx+=gap;var ay=y-1.4;doc.setDrawColor(104,115,125);doc.setLineWidth(0.35);doc.line(xx,ay,xx+aw,ay);doc.line(xx,ay,xx+2,ay-1.2);doc.line(xx,ay,xx+2,ay+1.2);doc.line(xx+aw,ay,xx+aw-2,ay-1.2);doc.line(xx+aw,ay,xx+aw-2,ay+1.2);xx+=aw+gap}}}doc.text=function(t,x,y,o){if(Array.isArray(t)){for(var i=0;i<t.length;i++){if(String(t[i]).indexOf("\\u001e")>=0)_routeDraw(t[i],x,y+i*(doc.getFontSize()*0.3528*1.15),o);else _pdfText(t[i],x,y+i*(doc.getFontSize()*0.3528*1.15),o)}return doc}if(typeof t==='string'&&t.indexOf("\\u001e")>=0){_routeDraw(t,x,y,o);return doc}return _pdfText(t,x,y,o)};'''
+
+          m = re.search(r'var doc=new jsPDF\([^;]*\);', js)
+          if not m:
+              raise SystemExit('jsPDF constructor not found')
+          js = js[:m.end()] + inject + js[m.end():]
+
+          # Keep the chart note wrapped as before.
+          js = re.sub(
+              r"doc\.text\('La linea rappresenta il ritardo medio mensile accumulato esclusivamente sul tratto Melzo \\u001e Milano Repubblica\.',left,110\);",
+              "var chartNote=doc.splitTextToSize('La linea rappresenta il ritardo medio mensile accumulato esclusivamente sul tratto Melzo \\u001e Milano Repubblica.',160);doc.text(chartNote,left,110);",
+              js,
+              count=1
+          )
+
+          # Feed labels separated by black commas.
           old = "doc.textWithLink('Monitor Arrivi & Partenze Live',fx,y,{url:'https://www.rfi.it/it/stazioni/pagine-stazioni/servizi-di-qualita/informazioni-al-pubblico/monitor-arrivi-partenze-live.html'});fx+=doc.getTextWidth('Monitor Arrivi & Partenze Live')+5;doc.textWithLink('Melzo',fx,y,{url:'https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?Arrivals=False&PlaceId=1690'});fx+=doc.getTextWidth('Melzo')+5;doc.textWithLink('Milano Repubblica',fx,y,{url:'https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?Arrivals=True&PlaceId=1719'});"
           new = "doc.textWithLink('Monitor Arrivi & Partenze Live',fx,y,{url:'https://www.rfi.it/it/stazioni/pagine-stazioni/servizi-di-qualita/informazioni-al-pubblico/monitor-arrivi-partenze-live.html'});fx+=doc.getTextWidth('Monitor Arrivi & Partenze Live')+3;doc.setTextColor(0,0,0);doc.text(',',fx,y);fx+=doc.getTextWidth(',')+3;doc.setTextColor(0,102,204);doc.textWithLink('Melzo',fx,y,{url:'https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?Arrivals=False&PlaceId=1690'});fx+=doc.getTextWidth('Melzo')+3;doc.setTextColor(0,0,0);doc.text(',',fx,y);fx+=doc.getTextWidth(',')+3;doc.setTextColor(0,102,204);doc.textWithLink('Milano Repubblica',fx,y,{url:'https://iechub.rfi.it/ArriviPartenze/ArrivalsDepartures/Monitor?Arrivals=True&PlaceId=1719'});"
-          if old in s:
-              s = s.replace(old, new, 1)
+          if old in js:
+              js = js.replace(old, new, 1)
 
-          old = "function rich(segments){var fs=9.2,leading=4.45,max=165,words=[];segments.forEach(function(seg){seg.text.split(/(\\s+)/).forEach(function(w){if(w)words.push({text:w,bold:!!seg.bold})})});var line='',lineWords=[],lines=[];words.forEach(function(w){var test=line+w.text;setFont(w.bold?'bold':'normal',fs,[79,91,102]);if(line&&doc.getTextWidth(test)>max){lines.push(lineWords);line=w.text;lineWords=[w]}else{line=test;lineWords.push(w)}});if(lineWords.length)lines.push(lineWords);lines.forEach(function(ws){var x=left;ws.forEach(function(w){setFont(w.bold?'bold':'normal',fs,[79,91,102]);doc.text(w.text,x,y);x+=doc.getTextWidth(w.text)});y+=leading});y+=2.8;return y}"
-          new = "function rich(segments){var fs=9.2,leading=4.45,max=165,tokens=[];segments.forEach(function(seg){seg.text.trim().split(/\\s+/).forEach(function(w){if(w)tokens.push({text:w,bold:!!seg.bold})})});var lines=[],cur=[],width=0;tokens.forEach(function(t){setFont(t.bold?'bold':'normal',fs,[79,91,102]);var add=(cur.length?' ':'')+t.text,w=doc.getTextWidth(add);if(cur.length&&width+w>max){lines.push(cur);cur=[t];width=doc.getTextWidth(t.text)}else{cur.push(t);width+=w}});if(cur.length)lines.push(cur);lines.forEach(function(ws){var x=left;ws.forEach(function(w,i){setFont(w.bold?'bold':'normal',fs,[79,91,102]);if(i) x+=doc.getTextWidth(' ');doc.text(w.text,x,y);x+=doc.getTextWidth(w.text)});y+=leading});y+=3.0;return y}"
-          if old in s:
-              s = s.replace(old, new, 1)
-
+          s = head + js
           p.write_text(s, encoding='utf-8')
-          print('Patch checked')
+          print('PDF route patch checked')
       - name: Commit patched file
         run: |
           git config user.name "github-actions[bot]"
