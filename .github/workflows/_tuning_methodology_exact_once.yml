@@ -1,0 +1,38 @@
+name: Temporary exact methodology tuning
+on:
+  push:
+    paths:
+      - '.methodology-exact-trigger'
+permissions:
+  contents: write
+jobs:
+  tune:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Align methodology to approved wording
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          start=s.index('<section class="panel method">')
+          end=s.index('</section>', start)+len('</section>')
+          new='''<section class="panel method"><h2>Metodologia</h2><p>Il KPI misura il <b>ritardo cumulativo sul tratto Melzo ↔ Milano Repubblica</b>, non il semplice ritardo del treno alla partenza/arrivo.</p><ul><li><b>Ritardo a Melzo</b> e <b>ritardo a Milano Repubblica</b> sono il ritardo che RFI riporta per quel treno nel momento in cui viene osservato in quella stazione. Non sono il ritardo alla stazione iniziale e finale dell'intero viaggio del treno. Mattina: ritardo a Melzo − ritardo a Milano Repubblica; Sera: ritardo a Milano Repubblica − ritardo a Melzo.</li><li>Un eventuale recupero di ritardo sul tratto viene posto a 0 ai fini del KPI.</li><li>Le cancellazioni sono conteggiate separatamente.</li><li>Le rilevazioni sono acquisite automaticamente da informazioni pubbliche RFI.</li><li><b>Gestione dei dati mancanti.</b> Qualora una rilevazione non risulti disponibile in uno dei punti di osservazione (Melzo ↔ Milano Repubblica), il dato viene ricostruito quando sono disponibili informazioni RFI sufficienti a determinarlo con ragionevole attendibilità. La ricostruzione può basarsi sul ritardo rilevato per la stessa corsa nell'altro punto di osservazione oppure su informazioni di ritardo pubblicate da RFI in prossimità dell'orario previsto. I dati ricostruiti non vengono stimati arbitrariamente: vengono utilizzate esclusivamente informazioni effettivamente disponibili.</li></ul></section>'''
+          s=s[:start]+new+s[end:]
+          p.write_text(s,encoding='utf-8')
+          PY
+          python - <<'PY'
+          from pathlib import Path
+          s=Path('index.html').read_text(encoding='utf-8')
+          js=s[s.rfind('<script>')+8:s.rfind('</script>')]
+          Path('/tmp/dashboard.js').write_text(js,encoding='utf-8')
+          PY
+          node --check /tmp/dashboard.js
+      - name: Commit change
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Align dashboard methodology with approved wording'
+          git push
