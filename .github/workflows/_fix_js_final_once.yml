@@ -6,16 +6,15 @@ permissions:
   contents: write
 jobs:
   fix:
-    if: github.event.head_commit.message != 'Fix dashboard JavaScript final 2'
+    if: github.event.head_commit.message != 'Fix dashboard JavaScript final 3'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - run: |
           set -eux
-          grep -o "dall'orario previsto" index.html | wc -l
-          sed -i "s/dall'orario previsto/dall\\u0027orario previsto/" index.html
+          sed -i "s/dall'orario previsto/dall\\u0027orario previsto/g; s/dell'orario/dell\\u0027orario/g" index.html
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add index.html
-          git commit -m "Fix dashboard JavaScript final 2"
+          git commit -m "Fix dashboard JavaScript final 3"
           git push
