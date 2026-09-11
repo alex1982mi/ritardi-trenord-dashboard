@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T18:57:40.144239+00:00",
+  "generated_at": "2026-09-11T05:14:46.548151+00:00",
   "methodology": {
     "primary_metric": "Ritardo accumulato sul tratto",
     "formula_morning": "ritardo Repubblica - ritardo Melzo",
@@ -349,6 +349,44 @@
       "data_quality": "complete",
       "origin_observed_at": "2026-09-10T18:31:30.458962+02:00",
       "destination_observed_at": "2026-09-10T18:59:37.221434+02:00"
+    },
+    {
+      "service_date": "2026-09-11",
+      "slot_id": "AM_S5_0759",
+      "train": "S5",
+      "line": "S5",
+      "direction": "morning",
+      "origin": "Melzo",
+      "destination": "Milano Repubblica",
+      "origin_scheduled_time": "07:59",
+      "destination_scheduled_time": "08:30",
+      "origin_delay": 0,
+      "destination_delay": null,
+      "segment_delay": null,
+      "arrival_lateness": null,
+      "cancelled": false,
+      "data_quality": "origin_only",
+      "origin_observed_at": "2026-09-11T07:14:28.809184+02:00",
+      "destination_observed_at": ""
+    },
+    {
+      "service_date": "2026-09-11",
+      "slot_id": "AM_S5_0829",
+      "train": "S5",
+      "line": "S5",
+      "direction": "morning",
+      "origin": "Melzo",
+      "destination": "Milano Repubblica",
+      "origin_scheduled_time": "08:29",
+      "destination_scheduled_time": "09:00",
+      "origin_delay": 0,
+      "destination_delay": null,
+      "segment_delay": null,
+      "arrival_lateness": null,
+      "cancelled": false,
+      "data_quality": "origin_only",
+      "origin_observed_at": "2026-09-11T07:14:28.809184+02:00",
+      "destination_observed_at": ""
     }
   ]
 }
