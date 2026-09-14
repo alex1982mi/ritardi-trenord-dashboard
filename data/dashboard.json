@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T09:24:19.843888+00:00",
+  "generated_at": "2026-09-14T09:43:56.112478+00:00",
   "methodology": {
     "primary_metric": "Ritardo accumulato sul tratto",
     "formula_morning": "ritardo Repubblica - ritardo Melzo",
