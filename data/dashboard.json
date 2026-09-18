@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-18T05:59:10.462760+00:00",
+  "generated_at": "2026-09-18T06:24:58.340069+00:00",
   "methodology": {
     "primary_metric": "Ritardo accumulato sul tratto",
     "formula_morning": "ritardo Repubblica - ritardo Melzo",
@@ -894,13 +894,13 @@
       "origin_scheduled_time": "07:59",
       "destination_scheduled_time": "08:30",
       "origin_delay": 0,
-      "destination_delay": 0,
-      "segment_delay": 0,
-      "arrival_lateness": 0,
+      "destination_delay": 14,
+      "segment_delay": 14,
+      "arrival_lateness": 14,
       "cancelled": false,
       "data_quality": "complete",
       "origin_observed_at": "2026-09-18T07:58:57.397716+02:00",
-      "destination_observed_at": "2026-09-18T07:58:57.397716+02:00"
+      "destination_observed_at": "2026-09-18T08:24:40.514238+02:00"
     },
     {
       "service_date": "2026-09-18",
@@ -913,13 +913,13 @@
       "origin_scheduled_time": "08:29",
       "destination_scheduled_time": "09:00",
       "origin_delay": 0,
-      "destination_delay": null,
-      "segment_delay": null,
-      "arrival_lateness": null,
+      "destination_delay": 0,
+      "segment_delay": 0,
+      "arrival_lateness": 0,
       "cancelled": false,
-      "data_quality": "origin_only",
-      "origin_observed_at": "2026-09-18T07:58:57.397716+02:00",
-      "destination_observed_at": ""
+      "data_quality": "complete",
+      "origin_observed_at": "2026-09-18T08:24:40.514238+02:00",
+      "destination_observed_at": "2026-09-18T08:24:40.514238+02:00"
     },
     {
       "service_date": "2026-09-18",
@@ -930,15 +930,15 @@
       "origin": "Melzo",
       "destination": "Milano Repubblica",
       "origin_scheduled_time": "08:14",
-      "destination_scheduled_time": "08:46",
+      "destination_scheduled_time": "08:45",
       "origin_delay": 0,
-      "destination_delay": null,
-      "segment_delay": null,
-      "arrival_lateness": null,
+      "destination_delay": 0,
+      "segment_delay": 0,
+      "arrival_lateness": 0,
       "cancelled": false,
-      "data_quality": "origin_only",
+      "data_quality": "complete",
       "origin_observed_at": "2026-09-18T07:58:57.397716+02:00",
-      "destination_observed_at": ""
+      "destination_observed_at": "2026-09-18T08:24:40.514238+02:00"
     }
   ]
 }
