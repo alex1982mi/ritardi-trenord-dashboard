@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-21T14:32:05.447828+00:00",
+  "generated_at": "2026-09-21T14:48:26.448825+00:00",
   "methodology": {
     "primary_metric": "Ritardo accumulato sul tratto",
     "formula_morning": "ritardo Repubblica - ritardo Melzo",
@@ -1070,7 +1070,26 @@
       "arrival_lateness": null,
       "cancelled": false,
       "data_quality": "origin_only",
-      "origin_observed_at": "2026-09-21T16:31:54.608094+02:00",
+      "origin_observed_at": "2026-09-21T16:48:16.723223+02:00",
+      "destination_observed_at": ""
+    },
+    {
+      "service_date": "2026-09-21",
+      "slot_id": "PM_S6_1813",
+      "train": "S6",
+      "line": "S6",
+      "direction": "evening",
+      "origin": "Milano Repubblica",
+      "destination": "Melzo",
+      "origin_scheduled_time": "18:13",
+      "destination_scheduled_time": "18:45",
+      "origin_delay": 0,
+      "destination_delay": null,
+      "segment_delay": null,
+      "arrival_lateness": null,
+      "cancelled": false,
+      "data_quality": "origin_only",
+      "origin_observed_at": "2026-09-21T16:48:16.723223+02:00",
       "destination_observed_at": ""
     }
   ]
