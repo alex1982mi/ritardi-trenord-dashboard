@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-23T18:56:37.885210+00:00",
+  "generated_at": "2026-09-24T05:14:42.606272+00:00",
   "methodology": {
     "primary_metric": "Ritardo accumulato sul tratto",
     "formula_morning": "ritardo Repubblica - ritardo Melzo",
@@ -1338,6 +1338,63 @@
       "data_quality": "complete",
       "origin_observed_at": "2026-09-23T17:59:03.275412+02:00",
       "destination_observed_at": "2026-09-23T18:40:30.973604+02:00"
+    },
+    {
+      "service_date": "2026-09-24",
+      "slot_id": "AM_S5_0759",
+      "train": "S5",
+      "line": "S5",
+      "direction": "morning",
+      "origin": "Melzo",
+      "destination": "Milano Repubblica",
+      "origin_scheduled_time": "07:59",
+      "destination_scheduled_time": "08:30",
+      "origin_delay": 0,
+      "destination_delay": null,
+      "segment_delay": null,
+      "arrival_lateness": null,
+      "cancelled": false,
+      "data_quality": "origin_only",
+      "origin_observed_at": "2026-09-24T07:14:30.241775+02:00",
+      "destination_observed_at": ""
+    },
+    {
+      "service_date": "2026-09-24",
+      "slot_id": "AM_S5_0829",
+      "train": "S5",
+      "line": "S5",
+      "direction": "morning",
+      "origin": "Melzo",
+      "destination": "Milano Repubblica",
+      "origin_scheduled_time": "08:29",
+      "destination_scheduled_time": "09:00",
+      "origin_delay": 0,
+      "destination_delay": null,
+      "segment_delay": null,
+      "arrival_lateness": null,
+      "cancelled": false,
+      "data_quality": "origin_only",
+      "origin_observed_at": "2026-09-24T07:14:30.241775+02:00",
+      "destination_observed_at": ""
+    },
+    {
+      "service_date": "2026-09-24",
+      "slot_id": "AM_S6_0814",
+      "train": "S6",
+      "line": "S6",
+      "direction": "morning",
+      "origin": "Melzo",
+      "destination": "Milano Repubblica",
+      "origin_scheduled_time": "08:14",
+      "destination_scheduled_time": "08:46",
+      "origin_delay": 0,
+      "destination_delay": null,
+      "segment_delay": null,
+      "arrival_lateness": null,
+      "cancelled": false,
+      "data_quality": "origin_only",
+      "origin_observed_at": "2026-09-24T07:14:30.241775+02:00",
+      "destination_observed_at": ""
     }
   ]
 }
