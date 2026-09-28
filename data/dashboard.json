@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-28T15:42:02.218225+00:00",
+  "generated_at": "2026-09-28T15:59:04.597309+00:00",
   "methodology": {
     "primary_metric": "Ritardo accumulato sul tratto",
     "formula_morning": "ritardo Repubblica - ritardo Melzo",
@@ -1634,14 +1634,14 @@
       "destination": "Melzo",
       "origin_scheduled_time": "17:58",
       "destination_scheduled_time": "18:29",
-      "origin_delay": 22,
+      "origin_delay": null,
       "destination_delay": null,
       "segment_delay": null,
       "arrival_lateness": null,
-      "cancelled": false,
-      "data_quality": "origin_only",
-      "origin_observed_at": "2026-09-28T17:41:49.501567+02:00",
-      "destination_observed_at": ""
+      "cancelled": true,
+      "data_quality": "cancelled",
+      "origin_observed_at": "2026-09-28T17:58:55.593401+02:00",
+      "destination_observed_at": "2026-09-28T17:58:55.593401+02:00"
     },
     {
       "service_date": "2026-09-28",
@@ -1653,13 +1653,13 @@
       "destination": "Melzo",
       "origin_scheduled_time": "18:28",
       "destination_scheduled_time": "18:59",
-      "origin_delay": 0,
+      "origin_delay": 4,
       "destination_delay": null,
       "segment_delay": null,
       "arrival_lateness": null,
       "cancelled": false,
       "data_quality": "origin_only",
-      "origin_observed_at": "2026-09-28T17:41:49.501567+02:00",
+      "origin_observed_at": "2026-09-28T17:58:55.593401+02:00",
       "destination_observed_at": ""
     },
     {
@@ -1672,13 +1672,13 @@
       "destination": "Melzo",
       "origin_scheduled_time": "18:13",
       "destination_scheduled_time": "18:45",
-      "origin_delay": 0,
+      "origin_delay": 4,
       "destination_delay": null,
       "segment_delay": null,
       "arrival_lateness": null,
       "cancelled": false,
       "data_quality": "origin_only",
-      "origin_observed_at": "2026-09-28T17:41:49.501567+02:00",
+      "origin_observed_at": "2026-09-28T17:58:55.593401+02:00",
       "destination_observed_at": ""
     }
   ]
