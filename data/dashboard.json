@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T05:38:37.506990+00:00",
+  "generated_at": "2026-10-06T05:42:00.215587+00:00",
   "methodology": {
     "primary_metric": "Ritardo accumulato sul tratto",
     "formula_morning": "ritardo Repubblica - ritardo Melzo",
@@ -2205,13 +2205,13 @@
       "origin_scheduled_time": "17:58",
       "destination_scheduled_time": "18:29",
       "origin_delay": null,
-      "destination_delay": null,
+      "destination_delay": 0,
       "segment_delay": null,
-      "arrival_lateness": null,
+      "arrival_lateness": 0,
       "cancelled": false,
-      "data_quality": "incomplete",
+      "data_quality": "destination_only",
       "origin_observed_at": "",
-      "destination_observed_at": ""
+      "destination_observed_at": "2026-10-05T17:50:57+02:00"
     },
     {
       "service_date": "2026-10-05",
@@ -2224,13 +2224,13 @@
       "origin_scheduled_time": "18:28",
       "destination_scheduled_time": "18:59",
       "origin_delay": null,
-      "destination_delay": null,
+      "destination_delay": 0,
       "segment_delay": null,
-      "arrival_lateness": null,
+      "arrival_lateness": 0,
       "cancelled": false,
-      "data_quality": "incomplete",
+      "data_quality": "destination_only",
       "origin_observed_at": "",
-      "destination_observed_at": ""
+      "destination_observed_at": "2026-10-05T18:11:00+02:00"
     },
     {
       "service_date": "2026-10-05",
@@ -2243,13 +2243,13 @@
       "origin_scheduled_time": "18:13",
       "destination_scheduled_time": "18:45",
       "origin_delay": null,
-      "destination_delay": null,
+      "destination_delay": 0,
       "segment_delay": null,
-      "arrival_lateness": null,
+      "arrival_lateness": 0,
       "cancelled": false,
-      "data_quality": "incomplete",
+      "data_quality": "destination_only",
       "origin_observed_at": "",
-      "destination_observed_at": ""
+      "destination_observed_at": "2026-10-05T17:56:00+02:00"
     },
     {
       "service_date": "2026-10-06",
@@ -2267,7 +2267,7 @@
       "arrival_lateness": null,
       "cancelled": false,
       "data_quality": "origin_only",
-      "origin_observed_at": "2026-10-06T07:38:28.436683+02:00",
+      "origin_observed_at": "2026-10-06T07:41:51.575003+02:00",
       "destination_observed_at": ""
     },
     {
@@ -2286,7 +2286,7 @@
       "arrival_lateness": null,
       "cancelled": false,
       "data_quality": "origin_only",
-      "origin_observed_at": "2026-10-06T07:38:28.436683+02:00",
+      "origin_observed_at": "2026-10-06T07:41:51.575003+02:00",
       "destination_observed_at": ""
     },
     {
@@ -2305,7 +2305,7 @@
       "arrival_lateness": null,
       "cancelled": false,
       "data_quality": "origin_only",
-      "origin_observed_at": "2026-10-06T07:38:28.436683+02:00",
+      "origin_observed_at": "2026-10-06T07:41:51.575003+02:00",
       "destination_observed_at": ""
     }
   ]
