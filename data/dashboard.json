@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T06:23:49.950189+00:00",
+  "generated_at": "2026-10-06T06:29:05.251285+00:00",
   "methodology": {
     "primary_metric": "Ritardo accumulato sul tratto",
     "formula_morning": "ritardo Repubblica - ritardo Melzo",
@@ -2262,13 +2262,13 @@
       "origin_scheduled_time": "07:59",
       "destination_scheduled_time": "08:30",
       "origin_delay": 0,
-      "destination_delay": 0,
-      "segment_delay": 0,
-      "arrival_lateness": 0,
+      "destination_delay": 1,
+      "segment_delay": 1,
+      "arrival_lateness": 1,
       "cancelled": false,
       "data_quality": "complete",
       "origin_observed_at": "2026-10-06T07:41:51.575003+02:00",
-      "destination_observed_at": "2026-10-06T08:23:42.467169+02:00"
+      "destination_observed_at": "2026-10-06T08:28:57.066148+02:00"
     },
     {
       "service_date": "2026-10-06",
@@ -2280,14 +2280,14 @@
       "destination": "Milano Repubblica",
       "origin_scheduled_time": "08:29",
       "destination_scheduled_time": "09:00",
-      "origin_delay": 0,
+      "origin_delay": 5,
       "destination_delay": 0,
       "segment_delay": 0,
       "arrival_lateness": 0,
       "cancelled": false,
       "data_quality": "complete",
-      "origin_observed_at": "2026-10-06T08:23:42.467169+02:00",
-      "destination_observed_at": "2026-10-06T08:23:42.467169+02:00"
+      "origin_observed_at": "2026-10-06T08:28:57.066148+02:00",
+      "destination_observed_at": "2026-10-06T08:28:57.066148+02:00"
     },
     {
       "service_date": "2026-10-06",
@@ -2306,7 +2306,7 @@
       "cancelled": false,
       "data_quality": "complete",
       "origin_observed_at": "2026-10-06T08:10:35.117168+02:00",
-      "destination_observed_at": "2026-10-06T08:23:42.467169+02:00"
+      "destination_observed_at": "2026-10-06T08:28:57.066148+02:00"
     }
   ]
 }
