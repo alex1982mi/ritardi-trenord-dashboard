@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T08:12:49.798147+00:00",
+  "generated_at": "2026-10-06T08:16:11.543256+00:00",
   "methodology": {
     "primary_metric": "Ritardo accumulato sul tratto",
     "formula_morning": "ritardo Repubblica - ritardo Melzo",
@@ -316,7 +316,7 @@
     {
       "service_date": "2026-09-10",
       "slot_id": "PM_S5_1758",
-      "train": "S5",
+      "train": "24561",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -335,7 +335,7 @@
     {
       "service_date": "2026-09-10",
       "slot_id": "PM_S5_1828",
-      "train": "S5",
+      "train": "24563",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -354,7 +354,7 @@
     {
       "service_date": "2026-09-11",
       "slot_id": "AM_S5_0759",
-      "train": "S5",
+      "train": "24522",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -373,7 +373,7 @@
     {
       "service_date": "2026-09-11",
       "slot_id": "AM_S5_0829",
-      "train": "S5",
+      "train": "24524",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -392,7 +392,7 @@
     {
       "service_date": "2026-09-11",
       "slot_id": "PM_S5_1758",
-      "train": "S5",
+      "train": "24561",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -411,7 +411,7 @@
     {
       "service_date": "2026-09-11",
       "slot_id": "PM_S5_1828",
-      "train": "S5",
+      "train": "24563",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -430,7 +430,7 @@
     {
       "service_date": "2026-09-14",
       "slot_id": "AM_S5_0759",
-      "train": "S5",
+      "train": "24522",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -449,7 +449,7 @@
     {
       "service_date": "2026-09-14",
       "slot_id": "AM_S5_0829",
-      "train": "S5",
+      "train": "24524",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -468,7 +468,7 @@
     {
       "service_date": "2026-09-14",
       "slot_id": "AM_S6_0814",
-      "train": "S6",
+      "train": "24604",
       "line": "S6",
       "direction": "morning",
       "origin": "Melzo",
@@ -487,7 +487,7 @@
     {
       "service_date": "2026-09-14",
       "slot_id": "PM_S5_1758",
-      "train": "S5",
+      "train": "24561",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -506,7 +506,7 @@
     {
       "service_date": "2026-09-14",
       "slot_id": "PM_S5_1828",
-      "train": "S5",
+      "train": "24563",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -525,7 +525,7 @@
     {
       "service_date": "2026-09-14",
       "slot_id": "PM_S6_1813",
-      "train": "S6",
+      "train": "24691",
       "line": "S6",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -544,7 +544,7 @@
     {
       "service_date": "2026-09-15",
       "slot_id": "AM_S5_0759",
-      "train": "S5",
+      "train": "24522",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -563,7 +563,7 @@
     {
       "service_date": "2026-09-15",
       "slot_id": "AM_S5_0829",
-      "train": "S5",
+      "train": "24524",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -582,7 +582,7 @@
     {
       "service_date": "2026-09-15",
       "slot_id": "AM_S6_0814",
-      "train": "S6",
+      "train": "24604",
       "line": "S6",
       "direction": "morning",
       "origin": "Melzo",
@@ -601,7 +601,7 @@
     {
       "service_date": "2026-09-15",
       "slot_id": "PM_S5_1758",
-      "train": "S5",
+      "train": "24561",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -620,7 +620,7 @@
     {
       "service_date": "2026-09-15",
       "slot_id": "PM_S5_1828",
-      "train": "S5",
+      "train": "24563",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -639,7 +639,7 @@
     {
       "service_date": "2026-09-15",
       "slot_id": "PM_S6_1813",
-      "train": "S6",
+      "train": "24691",
       "line": "S6",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -658,7 +658,7 @@
     {
       "service_date": "2026-09-16",
       "slot_id": "AM_S5_0759",
-      "train": "S5",
+      "train": "24522",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -677,7 +677,7 @@
     {
       "service_date": "2026-09-16",
       "slot_id": "AM_S5_0829",
-      "train": "S5",
+      "train": "24524",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -696,7 +696,7 @@
     {
       "service_date": "2026-09-16",
       "slot_id": "AM_S6_0814",
-      "train": "S6",
+      "train": "24604",
       "line": "S6",
       "direction": "morning",
       "origin": "Melzo",
@@ -715,7 +715,7 @@
     {
       "service_date": "2026-09-16",
       "slot_id": "PM_S5_1758",
-      "train": "S5",
+      "train": "24561",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -734,7 +734,7 @@
     {
       "service_date": "2026-09-16",
       "slot_id": "PM_S5_1828",
-      "train": "S5",
+      "train": "24563",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -753,7 +753,7 @@
     {
       "service_date": "2026-09-16",
       "slot_id": "PM_S6_1813",
-      "train": "S6",
+      "train": "24691",
       "line": "S6",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -772,7 +772,7 @@
     {
       "service_date": "2026-09-17",
       "slot_id": "AM_S5_0759",
-      "train": "S5",
+      "train": "24522",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -791,7 +791,7 @@
     {
       "service_date": "2026-09-17",
       "slot_id": "AM_S5_0829",
-      "train": "S5",
+      "train": "24524",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -810,7 +810,7 @@
     {
       "service_date": "2026-09-17",
       "slot_id": "AM_S6_0814",
-      "train": "S6",
+      "train": "24604",
       "line": "S6",
       "direction": "morning",
       "origin": "Melzo",
@@ -829,7 +829,7 @@
     {
       "service_date": "2026-09-17",
       "slot_id": "PM_S5_1758",
-      "train": "S5",
+      "train": "24561",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -848,7 +848,7 @@
     {
       "service_date": "2026-09-17",
       "slot_id": "PM_S5_1828",
-      "train": "S5",
+      "train": "24563",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -867,7 +867,7 @@
     {
       "service_date": "2026-09-17",
       "slot_id": "PM_S6_1813",
-      "train": "S6",
+      "train": "24691",
       "line": "S6",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -886,7 +886,7 @@
     {
       "service_date": "2026-09-18",
       "slot_id": "AM_S5_0759",
-      "train": "S5",
+      "train": "24522",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -905,7 +905,7 @@
     {
       "service_date": "2026-09-18",
       "slot_id": "AM_S5_0829",
-      "train": "S5",
+      "train": "24524",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -924,7 +924,7 @@
     {
       "service_date": "2026-09-18",
       "slot_id": "AM_S6_0814",
-      "train": "S6",
+      "train": "24604",
       "line": "S6",
       "direction": "morning",
       "origin": "Melzo",
@@ -943,7 +943,7 @@
     {
       "service_date": "2026-09-18",
       "slot_id": "PM_S5_1758",
-      "train": "S5",
+      "train": "24561",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -962,7 +962,7 @@
     {
       "service_date": "2026-09-18",
       "slot_id": "PM_S5_1828",
-      "train": "S5",
+      "train": "24563",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -981,7 +981,7 @@
     {
       "service_date": "2026-09-18",
       "slot_id": "PM_S6_1813",
-      "train": "S6",
+      "train": "24691",
       "line": "S6",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1000,7 +1000,7 @@
     {
       "service_date": "2026-09-21",
       "slot_id": "AM_S5_0759",
-      "train": "S5",
+      "train": "24522",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -1019,7 +1019,7 @@
     {
       "service_date": "2026-09-21",
       "slot_id": "AM_S5_0829",
-      "train": "S5",
+      "train": "24524",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -1038,7 +1038,7 @@
     {
       "service_date": "2026-09-21",
       "slot_id": "AM_S6_0814",
-      "train": "S6",
+      "train": "24604",
       "line": "S6",
       "direction": "morning",
       "origin": "Melzo",
@@ -1057,7 +1057,7 @@
     {
       "service_date": "2026-09-21",
       "slot_id": "PM_S5_1758",
-      "train": "S5",
+      "train": "24561",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1076,7 +1076,7 @@
     {
       "service_date": "2026-09-21",
       "slot_id": "PM_S5_1828",
-      "train": "S5",
+      "train": "24563",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1095,7 +1095,7 @@
     {
       "service_date": "2026-09-21",
       "slot_id": "PM_S6_1813",
-      "train": "S6",
+      "train": "24691",
       "line": "S6",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1114,7 +1114,7 @@
     {
       "service_date": "2026-09-22",
       "slot_id": "AM_S5_0759",
-      "train": "S5",
+      "train": "24522",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -1133,7 +1133,7 @@
     {
       "service_date": "2026-09-22",
       "slot_id": "AM_S5_0829",
-      "train": "S5",
+      "train": "24524",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -1152,7 +1152,7 @@
     {
       "service_date": "2026-09-22",
       "slot_id": "AM_S6_0814",
-      "train": "S6",
+      "train": "24604",
       "line": "S6",
       "direction": "morning",
       "origin": "Melzo",
@@ -1171,7 +1171,7 @@
     {
       "service_date": "2026-09-22",
       "slot_id": "PM_S5_1758",
-      "train": "S5",
+      "train": "24561",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1190,7 +1190,7 @@
     {
       "service_date": "2026-09-22",
       "slot_id": "PM_S5_1828",
-      "train": "S5",
+      "train": "24563",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1209,7 +1209,7 @@
     {
       "service_date": "2026-09-22",
       "slot_id": "PM_S6_1813",
-      "train": "S6",
+      "train": "24691",
       "line": "S6",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1228,7 +1228,7 @@
     {
       "service_date": "2026-09-23",
       "slot_id": "AM_S5_0759",
-      "train": "S5",
+      "train": "24522",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -1247,7 +1247,7 @@
     {
       "service_date": "2026-09-23",
       "slot_id": "AM_S5_0829",
-      "train": "S5",
+      "train": "24524",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -1266,7 +1266,7 @@
     {
       "service_date": "2026-09-23",
       "slot_id": "AM_S6_0814",
-      "train": "S6",
+      "train": "24604",
       "line": "S6",
       "direction": "morning",
       "origin": "Melzo",
@@ -1285,7 +1285,7 @@
     {
       "service_date": "2026-09-23",
       "slot_id": "PM_S5_1758",
-      "train": "S5",
+      "train": "24561",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1304,7 +1304,7 @@
     {
       "service_date": "2026-09-23",
       "slot_id": "PM_S5_1828",
-      "train": "S5",
+      "train": "24563",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1323,7 +1323,7 @@
     {
       "service_date": "2026-09-23",
       "slot_id": "PM_S6_1813",
-      "train": "S6",
+      "train": "24691",
       "line": "S6",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1342,7 +1342,7 @@
     {
       "service_date": "2026-09-24",
       "slot_id": "AM_S5_0759",
-      "train": "S5",
+      "train": "24522",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -1361,7 +1361,7 @@
     {
       "service_date": "2026-09-24",
       "slot_id": "AM_S5_0829",
-      "train": "S5",
+      "train": "24524",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -1380,7 +1380,7 @@
     {
       "service_date": "2026-09-24",
       "slot_id": "AM_S6_0814",
-      "train": "S6",
+      "train": "24604",
       "line": "S6",
       "direction": "morning",
       "origin": "Melzo",
@@ -1399,7 +1399,7 @@
     {
       "service_date": "2026-09-24",
       "slot_id": "PM_S5_1758",
-      "train": "S5",
+      "train": "24561",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1418,7 +1418,7 @@
     {
       "service_date": "2026-09-24",
       "slot_id": "PM_S5_1828",
-      "train": "S5",
+      "train": "24563",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1437,7 +1437,7 @@
     {
       "service_date": "2026-09-24",
       "slot_id": "PM_S6_1813",
-      "train": "S6",
+      "train": "24691",
       "line": "S6",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1456,7 +1456,7 @@
     {
       "service_date": "2026-09-25",
       "slot_id": "AM_S5_0759",
-      "train": "S5",
+      "train": "24522",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -1475,7 +1475,7 @@
     {
       "service_date": "2026-09-25",
       "slot_id": "AM_S5_0829",
-      "train": "S5",
+      "train": "24524",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -1494,7 +1494,7 @@
     {
       "service_date": "2026-09-25",
       "slot_id": "AM_S6_0814",
-      "train": "S6",
+      "train": "24604",
       "line": "S6",
       "direction": "morning",
       "origin": "Melzo",
@@ -1513,7 +1513,7 @@
     {
       "service_date": "2026-09-25",
       "slot_id": "PM_S5_1758",
-      "train": "S5",
+      "train": "24561",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1532,7 +1532,7 @@
     {
       "service_date": "2026-09-25",
       "slot_id": "PM_S5_1828",
-      "train": "S5",
+      "train": "24563",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1551,7 +1551,7 @@
     {
       "service_date": "2026-09-25",
       "slot_id": "PM_S6_1813",
-      "train": "S6",
+      "train": "24691",
       "line": "S6",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1570,7 +1570,7 @@
     {
       "service_date": "2026-09-28",
       "slot_id": "AM_S5_0759",
-      "train": "S5",
+      "train": "24522",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -1589,7 +1589,7 @@
     {
       "service_date": "2026-09-28",
       "slot_id": "AM_S5_0829",
-      "train": "S5",
+      "train": "24524",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -1608,7 +1608,7 @@
     {
       "service_date": "2026-09-28",
       "slot_id": "AM_S6_0814",
-      "train": "S6",
+      "train": "24604",
       "line": "S6",
       "direction": "morning",
       "origin": "Melzo",
@@ -1627,7 +1627,7 @@
     {
       "service_date": "2026-09-28",
       "slot_id": "PM_S5_1758",
-      "train": "S5",
+      "train": "24561",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1646,7 +1646,7 @@
     {
       "service_date": "2026-09-28",
       "slot_id": "PM_S5_1828",
-      "train": "S5",
+      "train": "24563",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1665,7 +1665,7 @@
     {
       "service_date": "2026-09-28",
       "slot_id": "PM_S6_1813",
-      "train": "S6",
+      "train": "24691",
       "line": "S6",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1684,7 +1684,7 @@
     {
       "service_date": "2026-09-29",
       "slot_id": "AM_S5_0759",
-      "train": "S5",
+      "train": "24522",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -1703,7 +1703,7 @@
     {
       "service_date": "2026-09-29",
       "slot_id": "AM_S5_0829",
-      "train": "S5",
+      "train": "24524",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -1722,7 +1722,7 @@
     {
       "service_date": "2026-09-29",
       "slot_id": "AM_S6_0814",
-      "train": "S6",
+      "train": "24604",
       "line": "S6",
       "direction": "morning",
       "origin": "Melzo",
@@ -1741,7 +1741,7 @@
     {
       "service_date": "2026-09-29",
       "slot_id": "PM_S5_1758",
-      "train": "S5",
+      "train": "24561",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1760,7 +1760,7 @@
     {
       "service_date": "2026-09-29",
       "slot_id": "PM_S5_1828",
-      "train": "S5",
+      "train": "24563",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1779,7 +1779,7 @@
     {
       "service_date": "2026-09-29",
       "slot_id": "PM_S6_1813",
-      "train": "S6",
+      "train": "24691",
       "line": "S6",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1798,7 +1798,7 @@
     {
       "service_date": "2026-09-30",
       "slot_id": "AM_S5_0759",
-      "train": "S5",
+      "train": "24522",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -1817,7 +1817,7 @@
     {
       "service_date": "2026-09-30",
       "slot_id": "AM_S5_0829",
-      "train": "S5",
+      "train": "24524",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -1836,7 +1836,7 @@
     {
       "service_date": "2026-09-30",
       "slot_id": "AM_S6_0814",
-      "train": "S6",
+      "train": "24604",
       "line": "S6",
       "direction": "morning",
       "origin": "Melzo",
@@ -1855,7 +1855,7 @@
     {
       "service_date": "2026-09-30",
       "slot_id": "PM_S5_1758",
-      "train": "S5",
+      "train": "24561",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1874,7 +1874,7 @@
     {
       "service_date": "2026-09-30",
       "slot_id": "PM_S5_1828",
-      "train": "S5",
+      "train": "24563",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1893,7 +1893,7 @@
     {
       "service_date": "2026-09-30",
       "slot_id": "PM_S6_1813",
-      "train": "S6",
+      "train": "24691",
       "line": "S6",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1912,7 +1912,7 @@
     {
       "service_date": "2026-10-01",
       "slot_id": "AM_S5_0759",
-      "train": "S5",
+      "train": "24522",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -1931,7 +1931,7 @@
     {
       "service_date": "2026-10-01",
       "slot_id": "AM_S5_0829",
-      "train": "S5",
+      "train": "24524",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -1950,7 +1950,7 @@
     {
       "service_date": "2026-10-01",
       "slot_id": "AM_S6_0814",
-      "train": "S6",
+      "train": "24604",
       "line": "S6",
       "direction": "morning",
       "origin": "Melzo",
@@ -1969,7 +1969,7 @@
     {
       "service_date": "2026-10-01",
       "slot_id": "PM_S5_1758",
-      "train": "S5",
+      "train": "24561",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -1988,7 +1988,7 @@
     {
       "service_date": "2026-10-01",
       "slot_id": "PM_S5_1828",
-      "train": "S5",
+      "train": "24563",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -2007,7 +2007,7 @@
     {
       "service_date": "2026-10-01",
       "slot_id": "PM_S6_1813",
-      "train": "S6",
+      "train": "24691",
       "line": "S6",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -2026,7 +2026,7 @@
     {
       "service_date": "2026-10-02",
       "slot_id": "AM_S5_0759",
-      "train": "S5",
+      "train": "24522",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -2045,7 +2045,7 @@
     {
       "service_date": "2026-10-02",
       "slot_id": "AM_S5_0829",
-      "train": "S5",
+      "train": "24524",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -2064,7 +2064,7 @@
     {
       "service_date": "2026-10-02",
       "slot_id": "AM_S6_0814",
-      "train": "S6",
+      "train": "24604",
       "line": "S6",
       "direction": "morning",
       "origin": "Melzo",
@@ -2083,7 +2083,7 @@
     {
       "service_date": "2026-10-02",
       "slot_id": "PM_S5_1758",
-      "train": "S5",
+      "train": "24561",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -2102,7 +2102,7 @@
     {
       "service_date": "2026-10-02",
       "slot_id": "PM_S5_1828",
-      "train": "S5",
+      "train": "24563",
       "line": "S5",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -2121,7 +2121,7 @@
     {
       "service_date": "2026-10-02",
       "slot_id": "PM_S6_1813",
-      "train": "S6",
+      "train": "24691",
       "line": "S6",
       "direction": "evening",
       "origin": "Milano Repubblica",
@@ -2140,7 +2140,7 @@
     {
       "service_date": "2026-10-05",
       "slot_id": "AM_S5_0759",
-      "train": "S5",
+      "train": "24522",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -2159,7 +2159,7 @@
     {
       "service_date": "2026-10-05",
       "slot_id": "AM_S5_0829",
-      "train": "S5",
+      "train": "24524",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -2178,7 +2178,7 @@
     {
       "service_date": "2026-10-05",
       "slot_id": "AM_S6_0814",
-      "train": "S6",
+      "train": "24604",
       "line": "S6",
       "direction": "morning",
       "origin": "Melzo",
@@ -2254,7 +2254,7 @@
     {
       "service_date": "2026-10-06",
       "slot_id": "AM_S5_0759",
-      "train": "S5",
+      "train": "24522",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -2273,7 +2273,7 @@
     {
       "service_date": "2026-10-06",
       "slot_id": "AM_S5_0829",
-      "train": "S5",
+      "train": "24524",
       "line": "S5",
       "direction": "morning",
       "origin": "Melzo",
@@ -2292,7 +2292,7 @@
     {
       "service_date": "2026-10-06",
       "slot_id": "AM_S6_0814",
-      "train": "S6",
+      "train": "24604",
       "line": "S6",
       "direction": "morning",
       "origin": "Melzo",
