@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T12:15:04.770219+00:00",
+  "generated_at": "2026-10-07T12:16:13.820Z",
   "methodology": {
     "primary_metric": "Ritardo accumulato sul tratto",
     "formula_morning": "ritardo Repubblica - ritardo Melzo",
@@ -2592,6 +2592,63 @@
       "data_quality": "complete",
       "origin_observed_at": "2026-10-06T18:14:11.962529+02:00",
       "destination_observed_at": "2026-10-06T18:14:11.962529+02:00"
+    },
+    {
+      "service_date": "2026-10-07",
+      "slot_id": "AM_S5_0759",
+      "train": "24522",
+      "line": "S5",
+      "direction": "morning",
+      "origin": "Melzo",
+      "destination": "Milano Repubblica",
+      "origin_scheduled_time": "07:59",
+      "destination_scheduled_time": "08:30",
+      "origin_delay": null,
+      "destination_delay": null,
+      "segment_delay": null,
+      "arrival_lateness": null,
+      "cancelled": false,
+      "data_quality": "incomplete",
+      "origin_observed_at": "",
+      "destination_observed_at": ""
+    },
+    {
+      "service_date": "2026-10-07",
+      "slot_id": "AM_S5_0829",
+      "train": "24524",
+      "line": "S5",
+      "direction": "morning",
+      "origin": "Melzo",
+      "destination": "Milano Repubblica",
+      "origin_scheduled_time": "08:29",
+      "destination_scheduled_time": "09:00",
+      "origin_delay": null,
+      "destination_delay": null,
+      "segment_delay": null,
+      "arrival_lateness": null,
+      "cancelled": false,
+      "data_quality": "incomplete",
+      "origin_observed_at": "",
+      "destination_observed_at": ""
+    },
+    {
+      "service_date": "2026-10-07",
+      "slot_id": "AM_S6_0814",
+      "train": "24604",
+      "line": "S6",
+      "direction": "morning",
+      "origin": "Melzo",
+      "destination": "Milano Repubblica",
+      "origin_scheduled_time": "08:14",
+      "destination_scheduled_time": "08:46",
+      "origin_delay": 5,
+      "destination_delay": 10,
+      "segment_delay": 5,
+      "arrival_lateness": 10,
+      "cancelled": false,
+      "data_quality": "incomplete",
+      "origin_observed_at": "",
+      "destination_observed_at": ""
     }
   ]
 }
