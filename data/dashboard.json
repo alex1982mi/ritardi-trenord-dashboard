@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T11:55:22.940050+00:00",
+  "generated_at": "2026-10-07T12:13:53.138118+00:00",
   "methodology": {
     "primary_metric": "Ritardo accumulato sul tratto",
     "formula_morning": "ritardo Repubblica - ritardo Melzo",
@@ -20,13 +20,13 @@
       "origin_scheduled_time": "17:58",
       "destination_scheduled_time": "18:29",
       "origin_delay": 1,
-      "destination_delay": 0,
+      "destination_delay": 1,
       "segment_delay": 0,
-      "arrival_lateness": 0,
+      "arrival_lateness": 1,
       "cancelled": false,
-      "data_quality": "complete",
+      "data_quality": "reconstructed",
       "origin_observed_at": "2026-09-04T17:51:39.483053+02:00",
-      "destination_observed_at": "2026-09-04T18:27:47.662779+02:00"
+      "destination_observed_at": ""
     },
     {
       "service_date": "2026-09-04",
@@ -39,13 +39,13 @@
       "origin_scheduled_time": "18:28",
       "destination_scheduled_time": "18:59",
       "origin_delay": 4,
-      "destination_delay": 0,
+      "destination_delay": 4,
       "segment_delay": 0,
-      "arrival_lateness": 0,
+      "arrival_lateness": 4,
       "cancelled": false,
-      "data_quality": "complete",
+      "data_quality": "reconstructed",
       "origin_observed_at": "2026-09-04T18:27:47.662779+02:00",
-      "destination_observed_at": "2026-09-04T18:55:42.514023+02:00"
+      "destination_observed_at": ""
     },
     {
       "service_date": "2026-09-07",
@@ -81,9 +81,9 @@
       "segment_delay": 2,
       "arrival_lateness": 2,
       "cancelled": false,
-      "data_quality": "complete",
+      "data_quality": "reconstructed",
       "origin_observed_at": "2026-09-07T07:48:45.083835+02:00",
-      "destination_observed_at": "2026-09-07T08:52:19.788464+02:00"
+      "destination_observed_at": ""
     },
     {
       "service_date": "2026-09-07",
@@ -119,7 +119,7 @@
       "segment_delay": 0,
       "arrival_lateness": 5,
       "cancelled": false,
-      "data_quality": "complete",
+      "data_quality": "reconstructed",
       "origin_observed_at": "2026-09-07T18:23:36.079711+02:00",
       "destination_observed_at": "2026-09-07T18:55:43.675243+02:00"
     },
@@ -195,7 +195,7 @@
       "segment_delay": 0,
       "arrival_lateness": 0,
       "cancelled": false,
-      "data_quality": "complete",
+      "data_quality": "reconstructed",
       "origin_observed_at": "2026-09-08T18:21:31.997141+02:00",
       "destination_observed_at": ""
     },
@@ -210,13 +210,13 @@
       "origin_scheduled_time": "07:59",
       "destination_scheduled_time": "08:30",
       "origin_delay": 0,
-      "destination_delay": 4,
-      "segment_delay": 4,
-      "arrival_lateness": 4,
+      "destination_delay": 2,
+      "segment_delay": 2,
+      "arrival_lateness": 2,
       "cancelled": false,
-      "data_quality": "complete",
+      "data_quality": "reconstructed",
       "origin_observed_at": "2026-09-09T07:47:59.495276+02:00",
-      "destination_observed_at": "2026-09-09T08:27:04.384717+02:00"
+      "destination_observed_at": ""
     },
     {
       "service_date": "2026-09-09",
@@ -248,13 +248,13 @@
       "origin_scheduled_time": "17:58",
       "destination_scheduled_time": "18:29",
       "origin_delay": 5,
-      "destination_delay": 0,
+      "destination_delay": 5,
       "segment_delay": 0,
-      "arrival_lateness": 0,
+      "arrival_lateness": 5,
       "cancelled": false,
-      "data_quality": "complete",
+      "data_quality": "reconstructed",
       "origin_observed_at": "2026-09-09T17:49:15.440908+02:00",
-      "destination_observed_at": "2026-09-09T18:24:48.573289+02:00"
+      "destination_observed_at": ""
     },
     {
       "service_date": "2026-09-09",
@@ -267,13 +267,13 @@
       "origin_scheduled_time": "18:28",
       "destination_scheduled_time": "18:59",
       "origin_delay": 7,
-      "destination_delay": 5,
+      "destination_delay": 7,
       "segment_delay": 0,
-      "arrival_lateness": 5,
+      "arrival_lateness": 7,
       "cancelled": false,
-      "data_quality": "complete",
+      "data_quality": "reconstructed",
       "origin_observed_at": "2026-09-09T18:24:48.573289+02:00",
-      "destination_observed_at": "2026-09-09T18:57:21.440763+02:00"
+      "destination_observed_at": ""
     },
     {
       "service_date": "2026-09-10",
@@ -286,13 +286,13 @@
       "origin_scheduled_time": "07:59",
       "destination_scheduled_time": "08:30",
       "origin_delay": 0,
-      "destination_delay": 5,
-      "segment_delay": 5,
-      "arrival_lateness": 5,
+      "destination_delay": 2,
+      "segment_delay": 2,
+      "arrival_lateness": 2,
       "cancelled": false,
-      "data_quality": "complete",
+      "data_quality": "reconstructed",
       "origin_observed_at": "2026-09-10T07:47:34.943536+02:00",
-      "destination_observed_at": "2026-09-10T08:26:50.378780+02:00"
+      "destination_observed_at": ""
     },
     {
       "service_date": "2026-09-10",
@@ -305,13 +305,13 @@
       "origin_scheduled_time": "08:29",
       "destination_scheduled_time": "09:00",
       "origin_delay": 0,
-      "destination_delay": 6,
-      "segment_delay": 6,
-      "arrival_lateness": 6,
+      "destination_delay": 2,
+      "segment_delay": 2,
+      "arrival_lateness": 2,
       "cancelled": false,
-      "data_quality": "complete",
+      "data_quality": "reconstructed",
       "origin_observed_at": "2026-09-10T08:26:50.378780+02:00",
-      "destination_observed_at": "2026-09-10T08:49:49.344889+02:00"
+      "destination_observed_at": ""
     },
     {
       "service_date": "2026-09-10",
@@ -1316,7 +1316,7 @@
       "segment_delay": null,
       "arrival_lateness": null,
       "cancelled": false,
-      "data_quality": "complete",
+      "data_quality": "incomplete",
       "origin_observed_at": "2026-09-23T18:21:42.856196+02:00",
       "destination_observed_at": ""
     },
@@ -2152,7 +2152,7 @@
       "segment_delay": 0,
       "arrival_lateness": 0,
       "cancelled": false,
-      "data_quality": "complete",
+      "data_quality": "reconstructed",
       "origin_observed_at": "2026-10-05T07:24:02.433098+02:00",
       "destination_observed_at": "2026-10-05T07:24:02.433098+02:00"
     },
@@ -2171,7 +2171,7 @@
       "segment_delay": 0,
       "arrival_lateness": 0,
       "cancelled": false,
-      "data_quality": "complete",
+      "data_quality": "reconstructed",
       "origin_observed_at": "2026-10-05T07:24:02.433098+02:00",
       "destination_observed_at": "2026-10-05T07:24:02.433098+02:00"
     },
@@ -2190,7 +2190,7 @@
       "segment_delay": 0,
       "arrival_lateness": 0,
       "cancelled": false,
-      "data_quality": "complete",
+      "data_quality": "reconstructed",
       "origin_observed_at": "2026-10-05T07:24:02.433098+02:00",
       "destination_observed_at": "2026-10-05T07:24:02.433098+02:00"
     },
@@ -2209,7 +2209,7 @@
       "segment_delay": null,
       "arrival_lateness": 0,
       "cancelled": false,
-      "data_quality": "complete",
+      "data_quality": "incomplete",
       "origin_observed_at": "",
       "destination_observed_at": "2026-10-05T17:50:57+02:00"
     },
@@ -2228,7 +2228,7 @@
       "segment_delay": null,
       "arrival_lateness": 0,
       "cancelled": false,
-      "data_quality": "complete",
+      "data_quality": "incomplete",
       "origin_observed_at": "",
       "destination_observed_at": "2026-10-05T18:11:00+02:00"
     },
@@ -2247,7 +2247,7 @@
       "segment_delay": null,
       "arrival_lateness": 0,
       "cancelled": false,
-      "data_quality": "complete",
+      "data_quality": "incomplete",
       "origin_observed_at": "",
       "destination_observed_at": "2026-10-05T17:56:00+02:00"
     },
