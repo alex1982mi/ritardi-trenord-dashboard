@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T16:00:34.821616+00:00",
+  "generated_at": "2026-10-07T16:02:05.957673+00:00",
   "methodology": {
     "primary_metric": "Ritardo accumulato sul tratto",
     "formula_morning": "ritardo Repubblica - ritardo Melzo",
@@ -2661,13 +2661,13 @@
       "origin_scheduled_time": "17:58",
       "destination_scheduled_time": "18:29",
       "origin_delay": 10,
-      "destination_delay": 5,
-      "segment_delay": 0,
-      "arrival_lateness": 5,
+      "destination_delay": null,
+      "segment_delay": null,
+      "arrival_lateness": null,
       "cancelled": false,
-      "data_quality": "complete",
-      "origin_observed_at": "2026-10-07T18:00:23.519141+02:00",
-      "destination_observed_at": "2026-10-07T18:00:23.519141+02:00"
+      "data_quality": "incomplete",
+      "origin_observed_at": "2026-10-07T18:01:20.782216+02:00",
+      "destination_observed_at": ""
     },
     {
       "service_date": "2026-10-07",
@@ -2685,7 +2685,7 @@
       "arrival_lateness": null,
       "cancelled": false,
       "data_quality": "incomplete",
-      "origin_observed_at": "2026-10-07T18:00:23.519141+02:00",
+      "origin_observed_at": "2026-10-07T18:01:20.782216+02:00",
       "destination_observed_at": ""
     },
     {
@@ -2697,15 +2697,15 @@
       "origin": "Milano Repubblica",
       "destination": "Melzo",
       "origin_scheduled_time": "18:13",
-      "destination_scheduled_time": "18:44",
+      "destination_scheduled_time": "18:45",
       "origin_delay": 2,
-      "destination_delay": 0,
-      "segment_delay": 0,
-      "arrival_lateness": 0,
+      "destination_delay": null,
+      "segment_delay": null,
+      "arrival_lateness": null,
       "cancelled": false,
-      "data_quality": "complete",
-      "origin_observed_at": "2026-10-07T18:00:23.519141+02:00",
-      "destination_observed_at": "2026-10-07T18:00:23.519141+02:00"
+      "data_quality": "incomplete",
+      "origin_observed_at": "2026-10-07T18:01:20.782216+02:00",
+      "destination_observed_at": ""
     }
   ]
 }
