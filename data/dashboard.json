@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-08T06:56:28.235208+00:00",
+  "generated_at": "2026-10-08T07:01:29.541791+00:00",
   "methodology": {
     "primary_metric": "Ritardo accumulato sul tratto",
     "formula_morning": "ritardo Repubblica - ritardo Melzo",
@@ -2737,13 +2737,13 @@
       "origin_scheduled_time": "08:29",
       "destination_scheduled_time": "09:00",
       "origin_delay": 0,
-      "destination_delay": null,
-      "segment_delay": null,
-      "arrival_lateness": null,
+      "destination_delay": 8,
+      "segment_delay": 8,
+      "arrival_lateness": 8,
       "cancelled": false,
-      "data_quality": "pending",
+      "data_quality": "complete",
       "origin_observed_at": "2026-10-08T08:31:15.670252+02:00",
-      "destination_observed_at": ""
+      "destination_observed_at": "2026-10-08T09:01:17.684306+02:00"
     },
     {
       "service_date": "2026-10-08",
