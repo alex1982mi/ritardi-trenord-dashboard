@@ -72,3 +72,4 @@ service_date,direction,selection,updated_at
 "2026-10-23","morning","ASSENZA","2026-10-23T11:50:52.643Z"
 "2026-10-26","evening","NESSUN_TRENO","2026-10-26T16:47:23.612Z"
 "2026-10-26","morning","NESSUN_TRENO","2026-10-26T06:46:40.623Z"
+"2026-10-27","morning","NESSUN_TRENO","2026-10-27T07:30:17.756Z"
