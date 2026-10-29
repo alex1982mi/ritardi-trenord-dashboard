@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-29T08:56:30.623275+00:00",
+  "generated_at": "2026-10-29T12:33:29.757692+00:00",
   "methodology": {
     "primary_metric": "Ritardo accumulato sul tratto",
     "formula_morning": "ritardo Repubblica - ritardo Melzo",
@@ -4473,6 +4473,25 @@
       "data_quality": "complete",
       "origin_observed_at": "2026-10-29T08:11:15.273344+01:00",
       "destination_observed_at": "2026-10-29T08:46:19.296167+01:00"
+    },
+    {
+      "service_date": "2026-10-29",
+      "slot_id": "PM_S5_1758",
+      "train": "24561",
+      "line": "S5",
+      "direction": "evening",
+      "origin": "Milano Repubblica",
+      "destination": "Melzo",
+      "origin_scheduled_time": "17:58",
+      "destination_scheduled_time": "18:29",
+      "origin_delay": null,
+      "destination_delay": null,
+      "segment_delay": null,
+      "arrival_lateness": null,
+      "cancelled": false,
+      "data_quality": "pending",
+      "origin_observed_at": "",
+      "destination_observed_at": ""
     }
   ]
 }
