@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-04T16:56:40.605769+00:00",
+  "generated_at": "2026-11-04T17:01:30.242268+00:00",
   "methodology": {
     "primary_metric": "Ritardo accumulato sul tratto",
     "formula_morning": "ritardo Repubblica - ritardo Melzo",
@@ -4940,13 +4940,13 @@
       "destination": "Melzo",
       "origin_scheduled_time": "17:58",
       "destination_scheduled_time": "18:29",
-      "origin_delay": 2,
+      "origin_delay": 6,
       "destination_delay": null,
       "segment_delay": null,
       "arrival_lateness": null,
       "cancelled": false,
       "data_quality": "pending",
-      "origin_observed_at": "2026-11-04T17:56:21.575639+01:00",
+      "origin_observed_at": "2026-11-04T18:01:19.312983+01:00",
       "destination_observed_at": ""
     },
     {
@@ -4965,7 +4965,7 @@
       "arrival_lateness": null,
       "cancelled": false,
       "data_quality": "pending",
-      "origin_observed_at": "2026-11-04T17:56:21.575639+01:00",
+      "origin_observed_at": "2026-11-04T18:01:19.312983+01:00",
       "destination_observed_at": ""
     },
     {
@@ -4978,13 +4978,13 @@
       "destination": "Melzo",
       "origin_scheduled_time": "18:13",
       "destination_scheduled_time": "18:45",
-      "origin_delay": 6,
+      "origin_delay": 7,
       "destination_delay": null,
       "segment_delay": null,
       "arrival_lateness": null,
       "cancelled": false,
       "data_quality": "pending",
-      "origin_observed_at": "2026-11-04T17:56:21.575639+01:00",
+      "origin_observed_at": "2026-11-04T18:01:19.312983+01:00",
       "destination_observed_at": ""
     }
   ]
