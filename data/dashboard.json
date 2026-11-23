@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-23T08:56:36.805186+00:00",
+  "generated_at": "2026-11-23T16:01:37.940320+00:00",
   "methodology": {
     "primary_metric": "Ritardo accumulato sul tratto",
     "formula_morning": "ritardo Repubblica - ritardo Melzo",
@@ -6411,6 +6411,63 @@
       "data_quality": "complete",
       "origin_observed_at": "2026-11-23T08:11:21.125894+01:00",
       "destination_observed_at": "2026-11-23T08:46:22.374537+01:00"
+    },
+    {
+      "service_date": "2026-11-23",
+      "slot_id": "PM_S5_1758",
+      "train": "24561",
+      "line": "S5",
+      "direction": "evening",
+      "origin": "Milano Repubblica",
+      "destination": "Melzo",
+      "origin_scheduled_time": "17:58",
+      "destination_scheduled_time": "18:29",
+      "origin_delay": 0,
+      "destination_delay": null,
+      "segment_delay": null,
+      "arrival_lateness": null,
+      "cancelled": false,
+      "data_quality": "pending",
+      "origin_observed_at": "2026-11-23T17:01:25.883173+01:00",
+      "destination_observed_at": ""
+    },
+    {
+      "service_date": "2026-11-23",
+      "slot_id": "PM_S5_1828",
+      "train": "24563",
+      "line": "S5",
+      "direction": "evening",
+      "origin": "Milano Repubblica",
+      "destination": "Melzo",
+      "origin_scheduled_time": "18:28",
+      "destination_scheduled_time": "18:59",
+      "origin_delay": 0,
+      "destination_delay": null,
+      "segment_delay": null,
+      "arrival_lateness": null,
+      "cancelled": false,
+      "data_quality": "pending",
+      "origin_observed_at": "2026-11-23T17:01:25.883173+01:00",
+      "destination_observed_at": ""
+    },
+    {
+      "service_date": "2026-11-23",
+      "slot_id": "PM_S6_1813",
+      "train": "24691",
+      "line": "S6",
+      "direction": "evening",
+      "origin": "Milano Repubblica",
+      "destination": "Melzo",
+      "origin_scheduled_time": "18:13",
+      "destination_scheduled_time": "18:45",
+      "origin_delay": 0,
+      "destination_delay": null,
+      "segment_delay": null,
+      "arrival_lateness": null,
+      "cancelled": false,
+      "data_quality": "pending",
+      "origin_observed_at": "2026-11-23T17:01:25.883173+01:00",
+      "destination_observed_at": ""
     }
   ]
 }
