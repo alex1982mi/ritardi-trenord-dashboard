@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T07:31:33.332872+00:00",
+  "generated_at": "2026-11-27T07:36:32.331571+00:00",
   "methodology": {
     "primary_metric": "Ritardo accumulato sul tratto",
     "formula_morning": "ritardo Repubblica - ritardo Melzo",
@@ -6828,7 +6828,7 @@
       "cancelled": false,
       "data_quality": "complete",
       "origin_observed_at": "2026-11-27T07:56:21.045887+01:00",
-      "destination_observed_at": "2026-11-27T08:31:21.232524+01:00"
+      "destination_observed_at": "2026-11-27T08:36:23.991276+01:00"
     },
     {
       "service_date": "2026-11-27",
